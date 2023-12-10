@@ -72,8 +72,5 @@ struct list_prestasi {
     adr_prestasi first;
 };
 
-struct list_anggota {
-
-};
 
 #endif // ADT_H_INCLUDED
