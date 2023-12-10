@@ -5,8 +5,6 @@
 #include <stdio.h>
 using namespace std;
 
-void printScreen();
-
 typedef struct elm_organisasi *adr_organisasi;
 typedef struct elm_mahasiswa *adr_mahasiswa;
 typedef struct elm_prestasi *adr_prestasi;
