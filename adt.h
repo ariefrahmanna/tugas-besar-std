@@ -41,6 +41,7 @@ struct elm_organisasi {
 struct elm_mahasiswa {
     info_mahasiswa info;
     adr_mahasiswa next;
+    adr_peraih peraih;
 };
 
 struct elm_prestasi {
