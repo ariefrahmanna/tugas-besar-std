@@ -80,7 +80,7 @@ void create_list_prestasi(list_prestasi &L);
 // create element
 adr_organisasi create_elm_organisasi(info_organisasi x);
 adr_mahasiswa create_elm_mahasiswa(info_mahasiswa x);
-adr_prestasi create_elm_presadr_prestasi(info_prestasi x);
+adr_prestasi create_elm_prestasi(info_prestasi x);
 // insert
 void insert_first_organisasi(list_organisasi &L, adr_organisasi p);
 void insert_first_mahasiswa(list_mahasiswa &L, adr_mahasiswa p);
