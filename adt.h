@@ -96,6 +96,10 @@ adr_prestasi delete_prestasi(list_prestasi &L, string id_prestasi);
 adr_organisasi search_organisasi(list_organisasi L, string id_organisasi);
 adr_mahasiswa search_mahasiswa(list_mahasiswa L, string nim);
 adr_prestasi search_prestasi(list_prestasi L, string id_prestasi);
+// edit
+void edit_organisasi(list_organisasi &L, string id_organisasi, string new_nama, string new_bidang, int new_sejak_tahun);
+void edit_mahasiswa(list_mahasiswa &L, string nim, string new_nama, string new_jurusan);
+void edit_prestasi(list_prestasi &L, string id_prestasi, string new_nama, string new_bidang, int new_urutan);
 // count on list
 int count_organisasi(list_organisasi L);
 int count_mahasiswa(list_mahasiswa L);
