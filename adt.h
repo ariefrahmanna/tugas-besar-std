@@ -52,7 +52,7 @@ struct elm_prestasi {
 struct elm_anggota {
     adr_anggota next;
     adr_mahasiswa value;
-    string nim; 
+    string nim;
 };
 
 struct elm_peraih {
@@ -89,26 +89,37 @@ void insert_last_organisasi(list_organisasi &L, adr_organisasi p);
 void insert_last_mahasiswa(list_mahasiswa &L, adr_mahasiswa p);
 void insert_last_prestasi(list_prestasi &L, adr_prestasi p);
 // delete
-adr_organisasi delete_last_organisasi(list_organisasi &L);
-adr_mahasiswa delete_last_mahasiswa(list_mahasiswa &L);
-adr_prestasi delete_last_prestasi(list_prestasi &L);
-// searching
+adr_organisasi delete_organisasi(list_organisasi &L, string id_organisasi);
+adr_mahasiswa delete_mahasiswa(list_mahasiswa &L, string nim);
+adr_prestasi delete_prestasi(list_prestasi &L, string id_prestasi);
+// searching on list
 adr_organisasi search_organisasi(list_organisasi L, string id_organisasi);
 adr_mahasiswa search_mahasiswa(list_mahasiswa L, string nim);
 adr_prestasi search_prestasi(list_prestasi L, string id_prestasi);
+// count on list
+int count_organisasi(list_organisasi L);
+int count_mahasiswa(list_mahasiswa L);
+int count_prestasi(list_prestasi L);
 
 
+// search on relation
+adr_anggota search_anggota(list_organisasi L, string id_organisasi, string nim);
+adr_peraih search_peraih(list_mahasiswa L, string nim, string id_prestasi);
 // insert relation
-void insert_anggota(adr_organisasi p, string nim);
-void insert_peraih(adr_mahasiswa p, string id_prestasi);
+void insert_anggota(list_organisasi L, string id_organisasi, string nim);
+void insert_peraih(list_mahasiswa L, string nim, string id_prestasi);
 // delete relation
-void delete_anggota(adr_organisasi p, string nim);
-void delete_peraih(adr_mahasiswa p, string id_prestasi);
+void delete_anggota(list_organisasi L, string id_organisasi, string nim);
+void delete_peraih(list_mahasiswa L, string nim, string id_prestasi);
+// count relation
+int count_anggota(list_organisasi L, string id_organisasi);
+int count_peraih(list_mahasiswa L, string nim);
 // show data
 void show_all_organisasi(list_organisasi L);
 void show_all_mahasiswa(list_mahasiswa L);
 void show_all_prestasi(list_prestasi L);
-void show_anggota(list_organisasi L, string id_organisasi);
-void show_peraih(list_mahasiswa L, string nim);
+void show_mahasiswa(adr_organisasi p);
+void show_prestasi(adr_mahasiswa p);
+
 
 #endif // ADT_H_INCLUDED
