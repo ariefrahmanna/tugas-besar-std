@@ -118,8 +118,8 @@ int count_peraih(list_mahasiswa L, string nim);
 void show_all_organisasi(list_organisasi L);
 void show_all_mahasiswa(list_mahasiswa L);
 void show_all_prestasi(list_prestasi L);
-void show_mahasiswa(adr_organisasi p);
-void show_prestasi(adr_mahasiswa p);
+void show_mahasiswa(list_organisasi L, string id_organisasi);
+void show_prestasi(list_mahasiswa L, string nim);
 
 
 #endif // ADT_H_INCLUDED
