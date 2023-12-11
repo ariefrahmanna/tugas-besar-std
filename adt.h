@@ -103,6 +103,10 @@ void edit_prestasi(list_prestasi &L, string id_prestasi, string new_nama, string
 int count_organisasi(list_organisasi L);
 int count_mahasiswa(list_mahasiswa L);
 int count_prestasi(list_prestasi L);
+// show
+void show_all_organisasi(list_organisasi L);
+void show_all_mahasiswa(list_mahasiswa L);
+void show_all_prestasi(list_prestasi L);
 
 
 // search on relation
@@ -117,10 +121,7 @@ void delete_peraih(list_mahasiswa L, string nim, string id_prestasi);
 // count relation
 int count_anggota(list_organisasi L, string id_organisasi);
 int count_peraih(list_mahasiswa L, string nim);
-// show data
-void show_all_organisasi(list_organisasi L);
-void show_all_mahasiswa(list_mahasiswa L);
-void show_all_prestasi(list_prestasi L);
+// show
 void show_mahasiswa(list_organisasi L, string id_organisasi);
 void show_prestasi(list_mahasiswa L, string nim);
 
