@@ -212,15 +212,49 @@ int count_prestasi(list_prestasi L) {
 }
 
 void show_all_organisasi(list_organisasi L) {
-    // TODO
+    adr_organisasi p = L.first;
+    cout << "==========    ORGANISASI     ==========" << endl;
+    cout << endl;
+    while(p != NULL){
+    cout << "==========    DATA ORGANISASI     ==========" << endl;
+    cout << "ID             :" << p->info.id << endl;
+    cout << "NAMA           :" << p->info.nama << endl;
+    cout << "BIDANG         :" << p->info.bidang << endl;
+    cout << "TAHUN BERDIRI  :" << p->info.bidang << endl;
+    cout << "=====================================" << endl;
+    p = p->next;
+    }
 }
 
 void show_all_mahasiswa(list_mahasiswa L) {
-    // TODO
+    adr_mahasiswa p = L.first;
+    cout << "==========    MAHASISWA     ==========" << endl;
+    cout << endl;
+    while(p != NULL){
+    cout << "==========    DATA MAHASISWA     ==========" << endl;
+    cout << "NIM        :" << p->info.nim << endl;
+    cout << "NAMA       :" << p->info.nama << endl;
+    cout << "JURUSAN    :" << p->info.jurusan << endl;
+    cout << "GENDER     :" << p->info.gender << endl;
+    cout << "ANGKATAN   :" << p->info.angkatan << endl;
+    cout << "============================================" << endl;
+    p = p->next;
+    }
 }
 
 void show_all_prestasi(list_prestasi L) {
-    // TODO
+    adr_prestasi p = L.first;
+    cout << "==========    PRESTASI     ==========" << endl;
+    cout << endl;
+    while(p != NULL){
+    cout << "==========    DATA PRESTASI     ==========" << endl;
+    cout << "ID         :" << p->info.id << endl;
+    cout << "NAMA       :" << p->info.nama << endl;
+    cout << "BIDANG     :" << p->info.bidang << endl;
+    cout << "URUTAN     :" << p->info.urutan << endl;
+    cout << "============================================" << endl;
+    p = p->next;
+    }
 }
 
 adr_anggota search_anggota(adr_organisasi p, string nim) {
@@ -292,9 +326,32 @@ int count_peraih(adr_mahasiswa p) {
 }
 
 void show_mahasiswa(adr_organisasi p) {
-    // TODO
+    adr_mahasiswa q = p->anggota;
+    cout << "==========    ANGGOTA     ==========" << endl;
+    cout << endl;
+    while(q != NULL){
+        cout << "========    DATA ANGGOTA     ========" << endl;
+        cout << "NIM        :" << q->info.nim << endl;
+        cout << "NAMA       :" << q->info.nama << endl;
+        cout << "JURUSAN    :" << q->info.jurusan << endl;
+        cout << "GENDER     :" << q->info.gender << endl;
+        cout << "ANGKATAN   :" << q->info.angkatan << endl;
+        cout << "=====================================" << endl;
+        q = q->next;
+        cout << endl;
+    }
 }
 
 void show_prestasi(adr_mahasiswa p) {
-    // TODO
+    adr_prestasi q = p-> peraih;
+    while(q != NULL){
+        cout << "========    DATA PRESTASI     ========" << endl;
+        cout << "ID         :" << q->info.id << endl;
+        cout << "NAMA       :" << q->info.nama << endl;
+        cout << "BIDANG     :" << q->info.bidang << endl;
+        cout << "URUTAN     :" << q->info.urutan << endl;
+        cout << "======================================" << endl;
+        q = q->next;
+        cout << endl;
+    }
 }
