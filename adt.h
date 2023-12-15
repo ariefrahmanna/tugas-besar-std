@@ -114,8 +114,8 @@ void show_all_prestasi(list_prestasi L);
 adr_anggota search_anggota(adr_organisasi p, string nim);
 adr_peraih search_peraih(adr_mahasiswa p, string id_prestasi);
 // insert relation
-void insert_anggota(adr_organisasi p, string nim);
-void insert_peraih(adr_mahasiswa p, string id_prestasi);
+void insert_anggota(list_mahasiswa L, adr_organisasi p, string nim);
+void insert_peraih(list_prestasi L, adr_mahasiswa p, string id_prestasi);
 // delete relation
 void delete_anggota(adr_organisasi p, string nim);
 void delete_peraih(adr_mahasiswa p, string id_prestasi);
