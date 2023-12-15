@@ -300,12 +300,45 @@ adr_peraih search_peraih(adr_mahasiswa p, string id_prestasi) {
     return NULL;
 }
 
-void insert_anggota(adr_organisasi p, string nim) {
-    // TODO
+void insert_anggota(list_mahasiswa L, adr_organisasi p, string nim) {
+    adr_mahasiswa q = search_mahasiswa(L, nim);
+    adr_anggota r, s;
+    if(q != NULL){
+        r = new elm_anggota;
+        r->next = NULL;
+        r->value = q;
+        r->nim = q->info.nim;
+        if(p->anggota == NULL){
+            p->anggota = r;
+        }else{
+            s = p->anggota;
+            while(s->next != NULL){
+                s = s->next;
+            }
+            s->next = r;
+        }
+    }
+
 }
 
-void insert_peraih(adr_mahasiswa p, string id_prestasi) {
-    // TODO
+void insert_peraih(list_prestasi L, adr_mahasiswa p, string id_prestasi) {
+    adr_prestasi q = search_prestasi(L, id_prestasi);
+    adr_peraih r,s;
+    if(q != NULL){
+        r = new elm_peraih;
+        r->next = NULL;
+        r->value = q;
+        r->id_prestasi = q->info.id;
+        if(p->peraih == NULL){
+            p->peraih = r;
+        }else{
+            s = p->peraih;
+            while(s->next != NULL){
+                s = s->next;
+            }
+            s->next = r;
+        }
+    }
 }
 
 adr_anggota delete_anggota(adr_organisasi p, string nim) {
