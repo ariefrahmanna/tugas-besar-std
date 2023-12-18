@@ -117,7 +117,7 @@ adr_organisasi delete_organisasi(list_organisasi &L, string id_organisasi) {
             prec = prec->next;
         }
 
-        prec = p->next;
+        prec->next = p->next;
     }
 
     p->next = NULL;
@@ -141,7 +141,7 @@ adr_mahasiswa delete_mahasiswa(list_mahasiswa &L, string nim) {
             prec = prec->next;
         }
 
-        prec = p->next;
+        prec->next = p->next;
     }
 
     p->next = NULL;
@@ -165,7 +165,7 @@ adr_prestasi delete_prestasi(list_prestasi &L, string id_prestasi) {
             prec = prec->next;
         }
 
-        prec = p->next;
+        prec->next = p->next;
     }
 
     p->next = NULL;
