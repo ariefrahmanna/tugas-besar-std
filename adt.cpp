@@ -102,18 +102,75 @@ void insert_last_prestasi(list_prestasi &L, adr_prestasi p) {
 }
 
 adr_organisasi delete_organisasi(list_organisasi &L, string id_organisasi) {
-    // TODO
-    return NULL;
+    adr_organisasi p, prec;
+
+    p = search_organisasi(L, id_organisasi);
+
+    if (p == NULL) return NULL;
+
+    if (p == L.first) {
+        L.first = L.first ->next;
+    } else {
+        prec = L.first;
+
+        while (prec->next != p) {
+            prec = prec->next;
+        }
+
+        prec = p->next;
+    }
+
+    p->next = NULL;
+
+    return p;
 }
 
 adr_mahasiswa delete_mahasiswa(list_mahasiswa &L, string nim) {
-    // TODO
-    return NULL;
+    adr_mahasiswa p, prec;
+
+    p = search_mahasiswa(L, nim);
+
+    if (p == NULL) return NULL;
+
+    if (p == L.first) {
+        L.first = L.first ->next;
+    } else {
+        prec = L.first;
+
+        while (prec->next != p) {
+            prec = prec->next;
+        }
+
+        prec = p->next;
+    }
+
+    p->next = NULL;
+
+    return p;
 }
 
 adr_prestasi delete_prestasi(list_prestasi &L, string id_prestasi) {
-    // TODO
-    return NULL;
+    adr_prestasi p, prec;
+
+    p = search_prestasi(L, id_prestasi);
+
+    if (p == NULL) return NULL;
+
+    if (p == L.first) {
+        L.first = L.first ->next;
+    } else {
+        prec = L.first;
+
+        while (prec->next != p) {
+            prec = prec->next;
+        }
+
+        prec = p->next;
+    }
+
+    p->next = NULL;
+
+    return p;
 }
 
 adr_organisasi search_organisasi(list_organisasi L, string id_organisasi) {
