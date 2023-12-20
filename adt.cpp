@@ -484,20 +484,21 @@ int count_peraih(adr_mahasiswa p) {
 void show_mahasiswa(adr_organisasi p) {
     adr_anggota q = p->anggota;
 
-    cout << "==========    ANGGOTA     ==========" << endl;
-    cout << endl;
+    if (q == NULL) {
+        cout << "======= LIST KOSONG ========" << endl;
+    } else {
+        while (q != NULL) {
+            cout << "========    DATA ANGGOTA     ========" << endl;
+            cout << "NIM        :" << q->value->info.nim << endl;
+            cout << "NAMA       :" << q->value->info.nama << endl;
+            cout << "JURUSAN    :" << q->value->info.jurusan << endl;
+            cout << "GENDER     :" << q->value->info.gender << endl;
+            cout << "ANGKATAN   :" << q->value->info.angkatan << endl;
+            cout << "=====================================" << endl;
+            cout << endl;
 
-    while (q != NULL) {
-        cout << "========    DATA ANGGOTA     ========" << endl;
-        cout << "NIM        :" << q->value->info.nim << endl;
-        cout << "NAMA       :" << q->value->info.nama << endl;
-        cout << "JURUSAN    :" << q->value->info.jurusan << endl;
-        cout << "GENDER     :" << q->value->info.gender << endl;
-        cout << "ANGKATAN   :" << q->value->info.angkatan << endl;
-        cout << "=====================================" << endl;
-        cout << endl;
-
-        q = q->next;
+            q = q->next;
+        }
     }
 }
 
