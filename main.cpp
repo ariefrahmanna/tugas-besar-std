@@ -17,11 +17,11 @@ int main() {
         cin >> input;
 
         if (input == "1") {
-            // TODO: organisasi
+            menu_organisasi();
         } else if (input == "2") {
-            // TODO: mahasiswa
+            menu_mahasiswa();
         } else if (input == "3") {
-            // TODO: prestasi
+            menu_prestasi();
         } else if (input == "4") {
             break;
         } else {
