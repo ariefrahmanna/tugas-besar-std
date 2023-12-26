@@ -1,9 +1,9 @@
 #include "menu.h"
-void menu_organisasi(){
+void menu_organisasi(list_organisasi &LP, list_mahasiswa &LC) {
     string input;
     while(true){
         clear_screen();
-        print_prompt_menu_organisasi()
+        print_prompt_menu_organisasi();
         cout << "Pilih: ";
         cin >> input;
         if (input == "1") {
@@ -35,11 +35,12 @@ void menu_organisasi(){
         }
     }
 }
-void menu_mahasiswa(){
+
+void menu_mahasiswa(list_mahasiswa &LP, list_prestasi &LC) {
     string input;
     while(true){
         clear_screen();
-        print_prompt_menu_organisasi()
+        print_prompt_menu_organisasi();
         cout << "Pilih: ";
         cin >> input;
         if (input == "1") {
@@ -71,11 +72,12 @@ void menu_mahasiswa(){
         }
     }
 }
-void menu_prestasi(){
+
+void menu_prestasi(list_prestasi &L) {
     string input;
     while(true){
         clear_screen();
-        print_prompt_menu_organisasi()
+        print_prompt_menu_organisasi();
         cout << "Pilih: ";
         cin >> input;
         if (input == "1") {
@@ -98,6 +100,7 @@ void menu_prestasi(){
     }
 
 }
+
 void print_prompt_main_menu(){
     cout << "=============  MAIN MENU   =============" << endl;
     cout << "PILIH LIST: " << endl;
@@ -107,6 +110,7 @@ void print_prompt_main_menu(){
     cout << "4. EXIT" << endl;
     cout << "========================================" << endl;
 }
+
 void print_prompt_menu_organisasi(){
     cout << "=============  ORGANISASI  =============" << endl;
     cout << "1. INSERT DATA ORGANISASI" << endl;
@@ -122,6 +126,7 @@ void print_prompt_menu_organisasi(){
     cout << "11. EXIT" << endl;
     cout << "========================================" << endl;
 }
+
 void print_prompt_menu_mahasiswa(){
     cout << "=============  MAHASISWA  =============" << endl;
     cout << "1. INSERT DATA MAHASISWA" << endl;
@@ -137,6 +142,7 @@ void print_prompt_menu_mahasiswa(){
     cout << "11. EXIT" << endl;
     cout << "========================================" << endl;
 }
+
 void print_prompt_menu_prestasi(){
     cout << "=============  PRESTASI  =============" << endl;
     cout << "1. INSERT DATA PRESTASI" << endl;
@@ -146,5 +152,4 @@ void print_prompt_menu_prestasi(){
     cout << "5. HITUNG JUMLAH PRESTASI" << endl;
     cout << "6. EXIT" << endl;
     cout << "========================================" << endl;
-
 }
