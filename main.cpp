@@ -10,6 +10,10 @@ int main() {
     list_prestasi L3;
     string input;
 
+    create_list_organisasi(L1);
+    create_list_mahasiswa(L2);
+    create_list_prestasi(L3);
+
     while (true) {
         clear_screen();
         print_prompt_main_menu();
