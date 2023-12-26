@@ -1,4 +1,5 @@
 #include "menu.h"
+
 void menu_organisasi(list_organisasi &LP, list_mahasiswa &LC) {
     string input;
     while(true){
