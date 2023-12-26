@@ -280,7 +280,7 @@ void show_all_organisasi(list_organisasi L) {
             cout << "ID             :" << p->info.id << endl;
             cout << "NAMA           :" << p->info.nama << endl;
             cout << "BIDANG         :" << p->info.bidang << endl;
-            cout << "TAHUN BERDIRI  :" << p->info.bidang << endl;
+            cout << "TAHUN BERDIRI  :" << p->info.sejak_tahun << endl;
             cout << endl;
             p = p->next;
         }
