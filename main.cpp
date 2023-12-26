@@ -12,16 +12,16 @@ int main() {
 
     while (true) {
         clear_screen();
-        // print_prompt();
+        print_prompt_main_menu();
         cout << "Pilih [1/2/3/4]: ";
         cin >> input;
 
         if (input == "1") {
-            menu_organisasi();
+            menu_organisasi(L1, L2);
         } else if (input == "2") {
-            menu_mahasiswa();
+            menu_mahasiswa(L2, L3);
         } else if (input == "3") {
-            menu_prestasi();
+            menu_prestasi(L3);
         } else if (input == "4") {
             break;
         } else {
