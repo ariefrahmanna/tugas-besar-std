@@ -2,6 +2,7 @@
 #define UTILITIES_H_INCLUDED
 
 #include <iostream>
+#include <limits>
 using namespace std;
 
 const string WRONG_INPUT_PROMPT = "Pilihan anda salah, silahkan input lagi.";

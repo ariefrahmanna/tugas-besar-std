@@ -15,5 +15,6 @@ void clear_screen() {
 }
 
 void wait_for_enter() {
-    // TODO
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
