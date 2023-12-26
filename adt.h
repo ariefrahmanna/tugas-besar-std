@@ -104,11 +104,14 @@ void edit_prestasi(adr_prestasi p, string new_nama, string new_bidang, int new_u
 int count_organisasi(list_organisasi L);
 int count_mahasiswa(list_mahasiswa L);
 int count_prestasi(list_prestasi L);
-// show
+// show all
 void show_all_organisasi(list_organisasi L);
 void show_all_mahasiswa(list_mahasiswa L);
 void show_all_prestasi(list_prestasi L);
-
+// show info
+void show_organisasi(adr_organisasi p);
+void show_mahasiswa(adr_mahasiswa p);
+void show_prestasi(adr_prestasi p);
 
 // search on relation
 adr_anggota search_anggota(adr_organisasi p, string nim);
@@ -122,9 +125,5 @@ adr_peraih delete_peraih(adr_mahasiswa p, string id_prestasi);
 // count relation
 int count_anggota(adr_organisasi p);
 int count_peraih(adr_mahasiswa p);
-// show
-void show_mahasiswa(adr_organisasi p);
-void show_prestasi(adr_mahasiswa p);
-
 
 #endif // ADT_H_INCLUDED
