@@ -4,3 +4,7 @@ obj/
 
 tugas-besar.depend
 tugas-besar.layout
+
+test.*
+*.exe
+vscode/
