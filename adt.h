@@ -125,5 +125,8 @@ adr_peraih delete_peraih(adr_mahasiswa p, string id_prestasi);
 // count relation
 int count_anggota(adr_organisasi p);
 int count_peraih(adr_mahasiswa p);
+// show all
+void show_all_anggota(adr_organisasi p);
+void show_all_peraih(adr_mahasiswa p);
 
 #endif // ADT_H_INCLUDED
