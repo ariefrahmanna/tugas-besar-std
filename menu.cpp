@@ -300,8 +300,28 @@ void menu_mahasiswa(list_mahasiswa &LP) {
             }
 
         } else if (input == "7") {      // show data mahasiswa
+            show_all_mahasiswa(LP);
 
         } else if (input == "8") {      // show data prestasi
+            if (count_mahasiswa(LP) == 0) {
+                cout << "!!! DATA MAHASISWA MASIH KOSONG !!!" << endl;
+                continue;
+            }
+            cout << "Masukkan NIM Mahasiswa : ";
+            cin >> nim;
+
+            while (search_mahasiswa(LP, nim) == NULL) {
+                cout << "!!! NIM TIDAK DITEMUKAN !!!" << endl;
+                cout << "Masukkan NIM Mahasiswa : ";
+                cin >> nim;
+            }
+
+            p = search_mahasiswa(LP, nim);
+            if (count_prestasi(p) == 0) {
+                cout << "!!! DATA PRESTASI MASIH KOSONG !!!" << endl;
+            } else {
+                show_all_prestasi(p);
+            }
 
         } else if (input == "9") {      // hitung jumlah mahasisiwa
 
