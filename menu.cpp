@@ -165,11 +165,23 @@ void menu_mahasiswa(list_mahasiswa &LP) {
     string input;
     while (true) {
         clear_screen();
-        print_prompt_menu_organisasi();
+        print_prompt_menu_mahasiswa();
         cout << "Pilih: ";
         cin >> input;
         if (input == "1") {             // insert data mahasisiwa
+            cout << "Masukkan Data Mahasiswa" << endl;
+            cout << "NIM        : " ; cin >> info.nim;
+            cout << "Nama       : " ; cin >> info.nama;
+            cout << "Jurusan    : " ; cin >> info.jurusan;
+            cout << "Gender     : " ; cin >> info.gender;
+            cout << "Angkatan   : " ; cin >> info.angkatan;
 
+            if (search_mahasiswa(LC, info.nim) != NULL) {
+                cout << "!!! MAHASISWA SUDAH TERDATA !!!" << endl;
+            } else {
+                insert_last_mahasiswa(LC, create_elm_mahasiswa(info));
+                cout << "=== MAHASISWA BERHASIL DITAMBAHKAN ===" << endl;
+            }
         } else if (input == "2") {      // insert data peraih
 
         } else if (input == "3") {      // search data mahasiswa
