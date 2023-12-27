@@ -400,6 +400,17 @@ int count_anggota(adr_organisasi p) {
     return n;
 }
 
+int count_prestasi(adr_mahasiswa p){
+    int n = 0;
+    adr_prestasi q = p->prestasi;
+
+    while (q != NULL) {
+        q = q->next;
+        n++;
+    }
+
+    return n;
+}
 
 void show_all_anggota(adr_organisasi p) {
     adr_anggota q = p->anggota;

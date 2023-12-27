@@ -101,7 +101,7 @@ adr_anggota search_anggota(adr_organisasi p, string nim);
 adr_prestasi search_prestasi(adr_mahasiswa p, string id_prestasi);
 // insert relation
 void insert_anggota(list_mahasiswa L, adr_organisasi p, string nim);
-void insert_prestasi(adr_mahasiswa p, adr_prestasi q)
+void insert_prestasi(adr_mahasiswa p, adr_prestasi q);
 // delete relation
 adr_anggota delete_anggota(adr_organisasi p, string nim);
 adr_prestasi delete_prestasi(adr_prestasi p, string id_prestasi);
