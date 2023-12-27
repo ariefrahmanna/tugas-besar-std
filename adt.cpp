@@ -8,14 +8,22 @@ void create_list_mahasiswa(list_mahasiswa &L) {
     L.first = NULL;
 }
 
-
-
 adr_organisasi create_elm_organisasi(info_organisasi x) {
     adr_organisasi p = new elm_organisasi();
 
     p->info = x;
     p->next = NULL;
     p->anggota = NULL;
+
+    return p;
+}
+
+adr_mahasiswa create_elm_mahasiswa(info_mahasiswa x) {
+    adr_mahasiswa p = new elm_mahasiswa();
+
+    p->info = x;
+    p->next = NULL;
+    p->prestasi = NULL;
 
     return p;
 }
@@ -413,6 +421,26 @@ void show_all_anggota(adr_organisasi p) {
             cout << "JURUSAN    :" << q->value->info.jurusan << endl;
             cout << "GENDER     :" << q->value->info.gender << endl;
             cout << "ANGKATAN   :" << q->value->info.angkatan << endl;
+            cout << "=====================================" << endl;
+            cout << endl;
+
+            q = q->next;
+        }
+    }
+}
+
+void show_all_prestasi(adr_mahasiswa p) {
+    adr_prestasi q = p->prestasi;
+
+    if (q == NULL) {
+        cout << "======= LIST KOSONG ========" << endl;
+    } else {
+        while (q != NULL) {
+            cout << "========    DATA ANGGOTA     ========" << endl;
+            cout << "ID         :" << q->info.id << endl;
+            cout << "NAMA       :" << q->info.nama << endl;
+            cout << "BIDANG     :" << q->info.bidang << endl;
+            cout << "URUTAN     :" << q->info.urutan << endl;
             cout << "=====================================" << endl;
             cout << endl;
 
