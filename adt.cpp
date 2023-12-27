@@ -433,3 +433,9 @@ void show_all_anggota(adr_organisasi p) {
     }
 }
 
+void show_prestasi(adr_prestasi p) {
+    cout << "ID         :" << p->info.id << endl;
+    cout << "NAMA       :" << p->info.nama << endl;
+    cout << "BIDANG     :" << p->info.bidang << endl;
+    cout << "URUTAN     :" << p->info.urutan << endl;
+}

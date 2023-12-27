@@ -111,5 +111,7 @@ int count_prestasi(adr_mahasiswa p);
 // show all
 void show_all_anggota(adr_organisasi p);
 void show_all_prestasi(adr_mahasiswa p);
+// show info
+void show_prestasi(adr_prestasi p);
 
 #endif // ADT_H_INCLUDED
