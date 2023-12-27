@@ -193,8 +193,7 @@ void print_prompt_main_menu() {
     cout << "PILIH LIST: " << endl;
     cout << "1. ORGANISASI" << endl;
     cout << "2. MAHASISWA" << endl;
-    cout << "3. PRESTASI" << endl;
-    cout << "4. EXIT" << endl;
+    cout << "3. EXIT" << endl;
     cout << "========================================" << endl;
 }
 
