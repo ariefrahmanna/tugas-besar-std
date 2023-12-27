@@ -216,10 +216,10 @@ void menu_mahasiswa(list_mahasiswa &LP) {
             p = search_mahasiswa(LP, nim);
 
             cout << "Masukkan Data Prestasi" << endl;
-            cout << "ID Prestasi    : "; cin << info_pres.id;
-            cout << "Nama           : "; cin << info_pres.nama;
-            cout << "Bidang         : "; cin << info_pres.bidang;
-            cout << "Urutan         : "; cin << info_pres.urutan;
+            cout << "ID Prestasi    : "; cin >> info_pres.id;
+            cout << "Nama           : "; cin >> info_pres.nama;
+            cout << "Bidang         : "; cin >> info_pres.bidang;
+            cout << "Urutan         : "; cin >> info_pres.urutan;
 
             if (search_prestasi(p, id_prestasi) != NULL) {
                 cout << "!!! PRESTASI SUDAH TERDATA !!!" << endl;
@@ -242,7 +242,27 @@ void menu_mahasiswa(list_mahasiswa &LP) {
                 cout << "======================================" << endl;
             }
 
-        } else if (input == "4") {      // search data peraih
+        } else if (input == "4") {      // search data prestasi
+            cout << "Masukkan NIM Mahasiswa : ";
+            cin >> nim;
+            cout << "Masukkan ID Prestasi : ";
+            cin >> id_prestasi;
+
+            p = search_mahasiswa(LP, nim);
+
+            if (p == NULL) {
+                cout << "!!! MAHASISWA TIDAK DITEMUKAN !!!" << endl;
+            } else {
+                q = search_prestasi(p, id_prestasi);
+
+                if (q == NULL) {
+                    cout << "!!! PRESTASI TIDAK DITEMUKAN !!!" << endl;
+                } else {
+                    cout << "========    DATA PRESTASI     ========" << endl;
+                    show_prestasi(q);
+                    cout << "=====================================" << endl;
+                }
+            }
 
         } else if (input == "5") {      // delete data mahasisiwa
 
