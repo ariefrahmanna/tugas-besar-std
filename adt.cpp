@@ -8,9 +8,7 @@ void create_list_mahasiswa(list_mahasiswa &L) {
     L.first = NULL;
 }
 
-void create_list_prestasi(list_prestasi &L) {
-    L.first = NULL;
-}
+
 
 adr_organisasi create_elm_organisasi(info_organisasi x) {
     adr_organisasi p = new elm_organisasi();
@@ -22,15 +20,6 @@ adr_organisasi create_elm_organisasi(info_organisasi x) {
     return p;
 }
 
-adr_mahasiswa create_elm_mahasiswa(info_mahasiswa x) {
-    adr_mahasiswa p = new elm_mahasiswa();
-
-    p->info = x;
-    p->next = NULL;
-    p->peraih = NULL;
-
-    return p;
-}
 
 adr_prestasi create_elm_prestasi(info_prestasi x) {
     adr_prestasi p = new elm_prestasi();
@@ -50,14 +39,6 @@ void insert_first_organisasi(list_organisasi &L, adr_organisasi p) {
 }
 
 void insert_first_mahasiswa(list_mahasiswa &L, adr_mahasiswa p) {
-    if (L.first != NULL) {
-        p->next = L.first;
-    }
-
-    L.first = p;
-}
-
-void insert_first_prestasi(list_prestasi &L, adr_prestasi p) {
     if (L.first != NULL) {
         p->next = L.first;
     }
@@ -89,17 +70,6 @@ void insert_last_mahasiswa(list_mahasiswa &L, adr_mahasiswa p) {
     }
 }
 
-void insert_last_prestasi(list_prestasi &L, adr_prestasi p) {
-    adr_prestasi last;
-
-    if (L.first == NULL) {
-        L.first = p;
-    } else {
-        last = L.first;
-        while (last->next != NULL) last = last->next;
-        last->next = p;
-    }
-}
 
 adr_organisasi delete_organisasi(list_organisasi &L, string id_organisasi) {
     adr_organisasi p, prec;
@@ -149,29 +119,7 @@ adr_mahasiswa delete_mahasiswa(list_mahasiswa &L, string nim) {
     return p;
 }
 
-adr_prestasi delete_prestasi(list_prestasi &L, string id_prestasi) {
-    adr_prestasi p, prec;
 
-    p = search_prestasi(L, id_prestasi);
-
-    if (p == NULL) return NULL;
-
-    if (p == L.first) {
-        L.first = L.first->next;
-    } else {
-        prec = L.first;
-
-        while (prec->next != p) {
-            prec = prec->next;
-        }
-
-        prec->next = p->next;
-    }
-
-    p->next = NULL;
-
-    return p;
-}
 
 adr_organisasi search_organisasi(list_organisasi L, string id_organisasi) {
     adr_organisasi p = L.first;
@@ -192,20 +140,6 @@ adr_mahasiswa search_mahasiswa(list_mahasiswa L, string nim) {
 
     while (p != NULL) {
         if (p->info.nim == nim) {
-            return p;
-        }
-
-        p = p->next;
-    }
-
-    return NULL;
-}
-
-adr_prestasi search_prestasi(list_prestasi L, string id_prestasi) {
-    adr_prestasi p = L.first;
-
-    while (p != NULL) {
-        if (p->info.id == id_prestasi) {
             return p;
         }
 
@@ -256,18 +190,6 @@ int count_mahasiswa(list_mahasiswa L) {
     return n;
 }
 
-int count_prestasi(list_prestasi L) {
-    int n = 0;
-    adr_prestasi p = L.first;
-
-    while (p != NULL) {
-        p = p->next;
-        n++;
-    }
-
-    return n;
-}
-
 void show_all_organisasi(list_organisasi L) {
     adr_organisasi p = L.first;
     if (L.first == NULL) {
@@ -308,27 +230,6 @@ void show_all_mahasiswa(list_mahasiswa L) {
         }
 
         cout << "=======================================" << endl;
-    }
-}
-
-void show_all_prestasi(list_prestasi L) {
-    adr_prestasi p = L.first;
-    if (L.first == NULL) {
-        cout << "==========   LIST  KOSONG   ==========" << endl;
-    } else {
-        cout << "==========     PRESTASI     ==========" << endl;
-        cout << endl;
-
-        while (p != NULL) {
-            cout << "ID         :" << p->info.id << endl;
-            cout << "NAMA       :" << p->info.nama << endl;
-            cout << "BIDANG     :" << p->info.bidang << endl;
-            cout << "URUTAN     :" << p->info.urutan << endl;
-            cout << endl;
-            p = p->next;
-        }
-
-        cout << "======================================" << endl;
     }
 }
 
@@ -383,19 +284,6 @@ adr_anggota search_anggota(adr_organisasi p, string nim) {
     return NULL;
 }
 
-adr_peraih search_peraih(adr_mahasiswa p, string id_prestasi) {
-    adr_peraih q = p->peraih;
-
-    while (q != NULL) {
-        if (q->id_prestasi == id_prestasi) {
-            return q;
-        }
-
-        q = q->next;
-    }
-
-    return NULL;
-}
 
 void insert_anggota(list_mahasiswa L, adr_organisasi p, string nim) {
     adr_mahasiswa q = search_mahasiswa(L, nim);
@@ -420,29 +308,6 @@ void insert_anggota(list_mahasiswa L, adr_organisasi p, string nim) {
     }
 }
 
-void insert_peraih(list_prestasi L, adr_mahasiswa p, string id_prestasi) {
-    adr_prestasi q = search_prestasi(L, id_prestasi);
-    adr_peraih r, s;
-
-    if (q != NULL) {
-        r = new elm_peraih;
-        r->next = NULL;
-        r->value = q;
-        r->id_prestasi = q->info.id;
-
-        if (p->peraih == NULL) {
-            p->peraih = r;
-        } else {
-            s = p->peraih;
-
-            while (s->next != NULL) {
-                s = s->next;
-            }
-
-            s->next = r;
-        }
-    }
-}
 
 adr_anggota delete_anggota(adr_organisasi p, string nim) {
     adr_anggota q = search_anggota(p, nim);
@@ -469,30 +334,6 @@ adr_anggota delete_anggota(adr_organisasi p, string nim) {
     return NULL;
 }
 
-adr_peraih delete_peraih(adr_mahasiswa p, string id_prestasi) {
-    adr_peraih q = search_peraih(p, id_prestasi);
-    adr_peraih r;
-
-    if (q != NULL) {
-        if (q == p->peraih) {
-            p->peraih = p->peraih->next;
-        } else {
-            r = p->peraih;
-
-            while (r->next != q) {
-                r = r->next;
-            }
-
-            r->next = q->next;
-        }
-
-        q->next = NULL;
-
-        return q;
-    }
-
-    return NULL;
-}
 
 int count_anggota(adr_organisasi p) {
     int n = 0;
@@ -506,17 +347,6 @@ int count_anggota(adr_organisasi p) {
     return n;
 }
 
-int count_peraih(adr_mahasiswa p) {
-    int n = 0;
-    adr_peraih q = p->peraih;
-
-    while (q != NULL) {
-        q = q->next;
-        n++;
-    }
-
-    return n;
-}
 
 void show_all_anggota(adr_organisasi p) {
     adr_anggota q = p->anggota;
@@ -539,22 +369,3 @@ void show_all_anggota(adr_organisasi p) {
     }
 }
 
-void show_all_peraih(adr_mahasiswa p) {
-    adr_peraih q = p->peraih;
-
-    if (q == NULL) {
-        cout << "======= LIST KOSONG ========" << endl;
-    } else {
-        while (q != NULL) {
-            cout << "========    DATA PRESTASI     ========" << endl;
-            cout << "ID         :" << q->value->info.id << endl;
-            cout << "NAMA       :" << q->value->info.nama << endl;
-            cout << "BIDANG     :" << q->value->info.bidang << endl;
-            cout << "URUTAN     :" << q->value->info.urutan << endl;
-            cout << "======================================" << endl;
-            cout << endl;
-
-            q = q->next;
-        }
-    }
-}
