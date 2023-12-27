@@ -26,8 +26,6 @@ int main() {
         } else if (input == "3") {
             break;
         } else {
-            // TODO
-            // cetak "salah input!"
             wait_for_enter();
         }
     }

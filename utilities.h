@@ -2,11 +2,13 @@
 #define UTILITIES_H_INCLUDED
 
 #include <iostream>
+#include <stdio.h>
 #include <limits>
+
 using namespace std;
 
 const string WRONG_INPUT_PROMPT = "Pilihan anda salah, silahkan input lagi.";
-const string WAIT_FOR_ENTER_PROMPT = "\nTekan Enter untuk lanjut...";
+const string WAIT_FOR_ENTER_PROMPT = "\nTekan Spasi lalu Enter untuk lanjut...";
 
 void validate_repeat(string &input, string prompt);
 void clear_screen();

@@ -1,5 +1,4 @@
 #include "utilities.h"
-#include <stdio.h>
 
 void validate_repeat(string &input, string prompt) {
     input = "";
@@ -15,6 +14,7 @@ void clear_screen() {
 }
 
 void wait_for_enter() {
-    cin.clear();
+    cout << WAIT_FOR_ENTER_PROMPT;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
 }
