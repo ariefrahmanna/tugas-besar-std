@@ -104,12 +104,14 @@ void insert_anggota(list_mahasiswa L, adr_organisasi p, string nim);
 void insert_prestasi(adr_mahasiswa p, adr_prestasi q);
 // delete relation
 adr_anggota delete_anggota(adr_organisasi p, string nim);
-adr_prestasi delete_prestasi(adr_prestasi p, string id_prestasi);
+adr_prestasi delete_prestasi(adr_mahasiswa p, string id_prestasi);
 // count relation
 int count_anggota(adr_organisasi p);
 int count_prestasi(adr_mahasiswa p);
 // show all
 void show_all_anggota(adr_organisasi p);
 void show_all_prestasi(adr_mahasiswa p);
+// show info
+void show_prestasi(adr_prestasi p);
 
 #endif // ADT_H_INCLUDED
