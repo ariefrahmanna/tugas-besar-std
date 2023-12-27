@@ -229,7 +229,18 @@ void menu_mahasiswa(list_mahasiswa &LP) {
             }
 
         } else if (input == "3") {      // search data mahasiswa
+            cout << "Masukkan NIM Mahasiswa : ";
+            cin >> nim;
 
+            p = search_mahasiswa(LP, nim);
+
+            if (p == NULL) {
+                cout << "!!! MAHASISWA TIDAK DITEMUKAN !!!" << endl;
+            } else {
+                cout << "========   DATA MAHASISWA    ========" << endl;
+                show_mahasiswa(p);
+                cout << "======================================" << endl;
+            }
 
         } else if (input == "4") {      // search data peraih
 
