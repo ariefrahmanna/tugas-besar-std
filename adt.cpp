@@ -320,6 +320,21 @@ void insert_anggota(list_mahasiswa L, adr_organisasi p, string nim) {
     }
 }
 
+void insert_prestasi(adr_mahasiswa p, adr_prestasi q){
+    adr_prestasi last;
+
+    if (p->prestasi == NULL) {
+        p->prestasi = q;
+    } else {
+        last = p->prestasi;
+        
+        while (last->next != NULL) {
+            last = last->next;
+        }
+
+        last->next = q;
+    }
+}
 
 adr_anggota delete_anggota(adr_organisasi p, string nim) {
     adr_anggota q = search_anggota(p, nim);
