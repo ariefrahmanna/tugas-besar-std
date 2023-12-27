@@ -151,7 +151,7 @@ void menu_organisasi(list_organisasi &LP, list_mahasiswa &LC) {
     }
 }
 
-void menu_mahasiswa(list_mahasiswa &LP, list_prestasi &LC) {
+void menu_mahasiswa(list_mahasiswa &LP) {
     string input;
     while (true) {
         clear_screen();
@@ -186,34 +186,6 @@ void menu_mahasiswa(list_mahasiswa &LP, list_prestasi &LC) {
             wait_for_enter();
         }
     }
-}
-
-void menu_prestasi(list_prestasi &L) {
-    string input;
-    while (true) {
-        clear_screen();
-        print_prompt_menu_organisasi();
-        cout << "Pilih: ";
-        cin >> input;
-        if (input == "1") {
-            //insert data prestasi
-        } else if (input == "2") {
-            //search data prestasi
-        } else if (input == "3") {
-            //delete data prestasi
-        } else if (input == "4") {
-            //show data prestasi
-        } else if (input == "5") {
-            //hitung jumlah prestasi
-        } else if (input == "6") {
-            break;
-        } else {
-            // TODO
-            cout << "!!!    INPUT SALAH    !!!" << endl;
-            wait_for_enter();
-        }
-    }
-
 }
 
 void print_prompt_main_menu() {
@@ -255,16 +227,5 @@ void print_prompt_menu_mahasiswa() {
     cout << "9. HITUNG JUMLAH MAHASISWA" << endl;
     cout << "10. HITUNG JUMLAH PERAIH PRESTASI" << endl;
     cout << "11. EXIT" << endl;
-    cout << "========================================" << endl;
-}
-
-void print_prompt_menu_prestasi() {
-    cout << "=============  PRESTASI  =============" << endl;
-    cout << "1. INSERT DATA PRESTASI" << endl;
-    cout << "2. SEARCH DATA PRESTASI" << endl;
-    cout << "3. DELETE DATA PRESTASI" << endl;
-    cout << "4. SHOW DATA PRESTASI" << endl;
-    cout << "5. HITUNG JUMLAH PRESTASI" << endl;
-    cout << "6. EXIT" << endl;
     cout << "========================================" << endl;
 }
