@@ -158,27 +158,27 @@ void menu_mahasiswa(list_mahasiswa &LP) {
         print_prompt_menu_organisasi();
         cout << "Pilih: ";
         cin >> input;
-        if (input == "1") {
-            //insert data mahasisiwa
-        } else if (input == "2") {
-            //insert data peraih
-        } else if (input == "3") {
-            //search data mahasiswa
-        } else if (input == "4") {
-            //search data peraih
-        } else if (input == "5") {
-            //delete data mahasisiwa
-        } else if (input == "6") {
-            //delete data peraih
-        } else if (input == "7") {
-            //show data peraih
-        } else if (input == "8") {
-            //show data peraih
-        } else if (input == "9") {
-            //hitung jumlah mahasisiwa
-        } else if (input == "10") {
-            //hitung jumlah peraih
-        } else if (input == "11") {
+        if (input == "1") {             // insert data mahasisiwa
+
+        } else if (input == "2") {      // insert data peraih
+
+        } else if (input == "3") {      // search data mahasiswa
+
+        } else if (input == "4") {      // search data peraih
+
+        } else if (input == "5") {      // delete data mahasisiwa
+
+        } else if (input == "6") {      // delete data peraih
+
+        } else if (input == "7") {      // show data peraih
+
+        } else if (input == "8") {      // show data peraih
+
+        } else if (input == "9") {      // hitung jumlah mahasisiwa
+
+        } else if (input == "10") {     // hitung jumlah peraih
+
+        } else if (input == "11") {     // exit
             break;
         } else {
             // TODO
