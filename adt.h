@@ -8,7 +8,6 @@ typedef struct elm_organisasi *adr_organisasi;
 typedef struct elm_mahasiswa *adr_mahasiswa;
 typedef struct elm_prestasi *adr_prestasi;
 typedef struct elm_anggota *adr_anggota;
-typedef struct elm_peraih *adr_peraih;
 
 struct info_organisasi {
     string id;
@@ -41,7 +40,7 @@ struct elm_organisasi {
 struct elm_mahasiswa {
     info_mahasiswa info;
     adr_mahasiswa next;
-    adr_peraih peraih;
+    adr_prestasi prestasi;
 };
 
 struct elm_prestasi {
@@ -55,11 +54,6 @@ struct elm_anggota {
     string nim;
 };
 
-struct elm_peraih {
-    adr_peraih next;
-    adr_prestasi value;
-    string id_prestasi;
-};
 
 struct list_organisasi {
     adr_organisasi first;
@@ -69,14 +63,10 @@ struct list_mahasiswa {
     adr_mahasiswa first;
 };
 
-struct list_prestasi {
-    adr_prestasi first;
-};
 
 // create list
 void create_list_organisasi(list_organisasi &L);
 void create_list_mahasiswa(list_mahasiswa &L);
-void create_list_prestasi(list_prestasi &L);
 // create element
 adr_organisasi create_elm_organisasi(info_organisasi x);
 adr_mahasiswa create_elm_mahasiswa(info_mahasiswa x);
@@ -84,18 +74,14 @@ adr_prestasi create_elm_prestasi(info_prestasi x);
 // insert
 void insert_first_organisasi(list_organisasi &L, adr_organisasi p);
 void insert_first_mahasiswa(list_mahasiswa &L, adr_mahasiswa p);
-void insert_first_prestasi(list_prestasi &L, adr_prestasi p);
 void insert_last_organisasi(list_organisasi &L, adr_organisasi p);
 void insert_last_mahasiswa(list_mahasiswa &L, adr_mahasiswa p);
-void insert_last_prestasi(list_prestasi &L, adr_prestasi p);
 // delete
 adr_organisasi delete_organisasi(list_organisasi &L, string id_organisasi);
 adr_mahasiswa delete_mahasiswa(list_mahasiswa &L, string nim);
-adr_prestasi delete_prestasi(list_prestasi &L, string id_prestasi);
 // searching on list
 adr_organisasi search_organisasi(list_organisasi L, string id_organisasi);
 adr_mahasiswa search_mahasiswa(list_mahasiswa L, string nim);
-adr_prestasi search_prestasi(list_prestasi L, string id_prestasi);
 // edit
 void edit_organisasi(adr_organisasi p, string new_nama, string new_bidang, int new_sejak_tahun);
 void edit_mahasiswa(adr_mahasiswa p, string new_nama, string new_jurusan);
@@ -103,25 +89,19 @@ void edit_prestasi(adr_prestasi p, string new_nama, string new_bidang, int new_u
 // count on list
 int count_organisasi(list_organisasi L);
 int count_mahasiswa(list_mahasiswa L);
-int count_prestasi(list_prestasi L);
 // show all
 void show_all_organisasi(list_organisasi L);
 void show_all_mahasiswa(list_mahasiswa L);
-void show_all_prestasi(list_prestasi L);
 // show info
 void show_organisasi(adr_organisasi p);
 void show_mahasiswa(adr_mahasiswa p);
-void show_prestasi(adr_prestasi p);
 
 // search on relation
 adr_anggota search_anggota(adr_organisasi p, string nim);
-adr_peraih search_peraih(adr_mahasiswa p, string id_prestasi);
 // insert relation
 void insert_anggota(list_mahasiswa L, adr_organisasi p, string nim);
-void insert_peraih(list_prestasi L, adr_mahasiswa p, string id_prestasi);
 // delete relation
 adr_anggota delete_anggota(adr_organisasi p, string nim);
-adr_peraih delete_peraih(adr_mahasiswa p, string id_prestasi);
 // count relation
 int count_anggota(adr_organisasi p);
 int count_peraih(adr_mahasiswa p);
