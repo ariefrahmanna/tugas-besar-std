@@ -271,20 +271,41 @@ void menu_mahasiswa(list_mahasiswa &LP) {
             p = delete_mahasiswa(LP, nim);
 
             if (p == NULL) {
-                cout << "!!! DATA TIDAK DITEMUKAN !!!" << endl;
+                cout << "!!! DATA MAHASISWA TIDAK DITEMUKAN !!!" << endl;
             } else {
                 cout << "DATA MAHASISWA BERHASIL DIHAPUS" << endl;
             }
 
-        } else if (input == "6") {      // delete data peraih
+        } else if (input == "6") {      // delete data prestasi
+            cout << "Masukkan NIM Mahasiswa : ";
+            cin >> nim;
+            p = search_mahasiswa(LP, nim);
+
+            while (p == NULL) {
+                cout << "!!! MAHASISWA TIDAK DITEMUKAN !!!" << endl;
+                cout << "Masukkan NIM Mahasiswa : ";
+                cin >> nim;
+                p = search_mahasiswa(LP, nim);
+            }
+
+            cout << "Masukkan ID Prestasi : ";
+            cin >> id_prestasi;
+
+            q = delete_prestasi(p, id_prestasi);
+
+            if (q == NULL) {
+                cout << "!!! DATA PRESTASI TIDAK DITEMUKAN !!!" << endl;
+            } else {
+                cout << "DATA PRESTASI BERHASIL DIHAPUS" << endl;
+            }
 
         } else if (input == "7") {      // show data mahasiswa
 
-        } else if (input == "8") {      // show data peraih
+        } else if (input == "8") {      // show data prestasi
 
         } else if (input == "9") {      // hitung jumlah mahasisiwa
 
-        } else if (input == "10") {     // hitung jumlah peraih
+        } else if (input == "10") {     // hitung jumlah prestasi
 
         } else if (input == "11") {     // exit
             break;
