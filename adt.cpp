@@ -283,7 +283,19 @@ adr_anggota search_anggota(adr_organisasi p, string nim) {
 
     return NULL;
 }
+adr_prestasi search_prestasi(adr_mahasiswa p, string id_prestasi){
+    adr_prestasi q = p->prestasi;
+    
+    while (q != NULL) {
+        if (q->id_prestasi == id_prestasi) {
+            return q;
+        }
 
+        q = q->next;
+    }
+
+    return NULL;
+}
 
 void insert_anggota(list_mahasiswa L, adr_organisasi p, string nim) {
     adr_mahasiswa q = search_mahasiswa(L, nim);
