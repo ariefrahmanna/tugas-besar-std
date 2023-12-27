@@ -258,18 +258,6 @@ void show_mahasiswa(adr_mahasiswa p) {
     cout << "ANGKATAN   :" << p->info.angkatan << endl;
 }
 
-void show_prestasi(adr_prestasi p) {
-    if (p == NULL) {
-        cout << "======= DATA KOSONG ========" << endl;
-        return;
-    }
-
-    cout << "ID         :" << p->info.id << endl;
-    cout << "NAMA       :" << p->info.nama << endl;
-    cout << "BIDANG     :" << p->info.bidang << endl;
-    cout << "URUTAN     :" << p->info.urutan << endl;
-}
-
 adr_anggota search_anggota(adr_organisasi p, string nim) {
     adr_anggota q = p->anggota;
 
