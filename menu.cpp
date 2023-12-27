@@ -27,6 +27,16 @@ void menu_organisasi(list_organisasi &LP, list_mahasiswa &LC) {
                 cout << "=== ORGANISASI BERHASIL DITAMBAHKAN ===" << endl;
             }
         } else if (input == "2") {      // insert data anggota
+            if (count_organisasi(LP) == 0) {
+                cout << "!!! DATA ORGANISASI MASIH KOSONG !!!" << endl;
+                continue;
+            }
+
+            if (count_mahasiswa(LC) == 0) {
+                cout << "!!! DATA MAHASISWA MASIH KOSONG !!!" << endl;
+                continue;
+            }
+
             cout << "Masukkan ID Organisasi : ";
             cin >> id_organisasi;
 
