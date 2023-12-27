@@ -265,10 +265,20 @@ void menu_mahasiswa(list_mahasiswa &LP) {
             }
 
         } else if (input == "5") {      // delete data mahasisiwa
+            cout << "Masukkan NIM Mahasiswa : ";
+            cin >> nim;
+
+            p = delete_mahasiswa(LP, nim);
+
+            if (p == NULL) {
+                cout << "!!! DATA TIDAK DITEMUKAN !!!" << endl;
+            } else {
+                cout << "DATA MAHASISWA BERHASIL DIHAPUS" << endl;
+            }
 
         } else if (input == "6") {      // delete data peraih
 
-        } else if (input == "7") {      // show data peraih
+        } else if (input == "7") {      // show data mahasiswa
 
         } else if (input == "8") {      // show data peraih
 
