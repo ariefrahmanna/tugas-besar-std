@@ -35,6 +35,10 @@
 		<Unit filename="adt.cpp" />
 		<Unit filename="adt.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
+		<Unit filename="utilities.cpp" />
+		<Unit filename="utilities.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
