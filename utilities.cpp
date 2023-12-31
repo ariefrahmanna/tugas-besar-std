@@ -10,7 +10,7 @@ void validate_repeat(string &input, string prompt) {
 }
 
 void clear_screen() {
-    printf("\033[H\033[2J");
+    cout << "\033[H\033[2J" << flush;
 }
 
 void wait_for_enter() {

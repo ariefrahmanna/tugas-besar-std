@@ -2,7 +2,6 @@
 #define UTILITIES_H_INCLUDED
 
 #include <iostream>
-#include <stdio.h>
 
 using namespace std;
 
