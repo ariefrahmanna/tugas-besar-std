@@ -20,6 +20,7 @@ int main() {
         print_prompt_main_menu();
         cout << "Pilih [1/2/3]: ";
         cin >> input;
+        cout << endl;
 
         if (input == "1") {
             menu_organisasi(LO, LM);
