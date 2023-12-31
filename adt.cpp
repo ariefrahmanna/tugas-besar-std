@@ -320,7 +320,7 @@ void insert_anggota(list_mahasiswa L, adr_organisasi p, string nim) {
     }
 }
 
-void insert_prestasi(adr_mahasiswa p, adr_prestasi q){
+void insert_prestasi(adr_mahasiswa p, adr_prestasi q) {
     adr_prestasi last;
 
     if (p->prestasi == NULL) {
@@ -393,6 +393,8 @@ adr_prestasi delete_prestasi(adr_mahasiswa p, string id_prestasi) {
 
 
 int count_anggota(adr_organisasi p) {
+    if (p == NULL) return 0;
+
     int n = 0;
     adr_anggota q = p->anggota;
 
