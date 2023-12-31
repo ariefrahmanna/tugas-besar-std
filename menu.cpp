@@ -433,7 +433,7 @@ void print_prompt_menu_organisasi() {
 }
 
 void print_prompt_menu_mahasiswa() {
-    cout << "=============  MAHASISWA  =============" << endl;
+    cout << "=============  MAHASISWA   =============" << endl;
     cout << "1. INSERT DATA MAHASISWA" << endl;
     cout << "2. INSERT DATA PERAIH PRESTASI" << endl;
     cout << "3. SEARCH DATA MAHASISWA" << endl;
