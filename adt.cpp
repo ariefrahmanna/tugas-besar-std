@@ -443,10 +443,10 @@ void show_all_prestasi(adr_mahasiswa p) {
     } else {
         while (q != NULL) {
             cout << "========    DATA ANGGOTA     ========" << endl;
-            cout << "ID         :" << q->info.id << endl;
-            cout << "NAMA       :" << q->info.nama << endl;
-            cout << "BIDANG     :" << q->info.bidang << endl;
-            cout << "URUTAN     :" << q->info.urutan << endl;
+            cout << "ID         : " << q->info.id << endl;
+            cout << "NAMA       : " << q->info.nama << endl;
+            cout << "BIDANG     : " << q->info.bidang << endl;
+            cout << "URUTAN     : " << q->info.urutan << endl;
             cout << "=====================================" << endl;
             cout << endl;
 
@@ -456,8 +456,8 @@ void show_all_prestasi(adr_mahasiswa p) {
 }
 
 void show_prestasi(adr_prestasi p) {
-    cout << "ID         :" << p->info.id << endl;
-    cout << "NAMA       :" << p->info.nama << endl;
-    cout << "BIDANG     :" << p->info.bidang << endl;
-    cout << "URUTAN     :" << p->info.urutan << endl;
+    cout << "ID         : " << p->info.id << endl;
+    cout << "NAMA       : " << p->info.nama << endl;
+    cout << "BIDANG     : " << p->info.bidang << endl;
+    cout << "URUTAN     : " << p->info.urutan << endl;
 }
