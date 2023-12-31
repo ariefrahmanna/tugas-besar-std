@@ -2,6 +2,8 @@
 #include "menu.h"
 #include "utilities.h"
 
+#include <iostream>
+
 using namespace std;
 
 int main() {
@@ -32,6 +34,7 @@ int main() {
 
     clear_screen();
     cout << "bye" << endl;
+    cout << endl;
 
     return 0;
 }
