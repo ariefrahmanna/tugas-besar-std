@@ -1,10 +1,10 @@
-.git/
+# codeblock specific files
 bin/
 obj/
+*.depend
+*.layout
 
-tugas-besar.depend
-tugas-besar.layout
-
+# miscellaneous
 test.*
 *.exe
 .vscode/
