@@ -15,6 +15,7 @@ void clear_screen() {
 
 void wait_for_enter() {
     cout << WAIT_FOR_ENTER_PROMPT;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cin.get();
+    fflush(stdin);
+    getchar();
+    cout << endl;
 }
