@@ -10,8 +10,8 @@ void menu_organisasi(list_organisasi &LO, list_mahasiswa &LM) {
     while (true) {
         clear_screen();
         print_prompt_menu_organisasi();
-        cout << "Pilih: ";
-        cin >> input;
+        cout << "Pilih: "; cin >> input;
+        cout << endl;
 
         if (input == "1") {     // insert data organisasi
             cout << "Masukkan data Organisasi" << endl;
@@ -191,8 +191,8 @@ void menu_organisasi(list_organisasi &LO, list_mahasiswa &LM) {
                 continue;
             }
 
-            cout << "Masukkan ID Organisasi : ";
-            cin >> id_organisasi;
+            cout << "Masukkan ID Organisasi : "; cin >> id_organisasi;
+            cout << endl;
 
             p = search_organisasi(LO, id_organisasi);
             n = count_anggota(p);
@@ -200,7 +200,7 @@ void menu_organisasi(list_organisasi &LO, list_mahasiswa &LM) {
             if (p == NULL) {
                 cout << "!!! ORGANISASI TIDAK DITEMUKAN !!!" << endl;
             } else {
-                printf("Jumlah Anggota dari Organisasi %s adalah %i\n", p->info.nama, n);
+                cout << "Jumlah Anggota dari Organisasi " << p->info.nama << " adalah " << n << endl;
             }
 
         } else if (input == "0") {     // exit
@@ -221,13 +221,14 @@ void menu_mahasiswa(list_organisasi &LO, list_mahasiswa &LM) {
     info_prestasi info_pres;
     adr_mahasiswa p;
     adr_prestasi q;
+    adr_organisasi p_org;
     int n;
 
     while (true) {
         clear_screen();
         print_prompt_menu_mahasiswa();
-        cout << "Pilih: ";
-        cin >> input;
+        cout << "Pilih: "; cin >> input;
+        cout << endl;
 
         if (input == "1") {             // insert data mahasisiwa
             cout << "Masukkan Data Mahasiswa" << endl;
@@ -251,14 +252,8 @@ void menu_mahasiswa(list_organisasi &LO, list_mahasiswa &LM) {
                 continue;
             }
 
-            cout << "Masukkan NIM Mahasiswa : ";
-            cin >> nim;
-
-            while (search_mahasiswa(LM, nim) == NULL) {
-                cout << "!!! NIM MAHASISWA TIDAK DITEMUKAN !!!" << endl;
-                cout << "Masukkan NIM Mahasiswa : ";
-                cin >> nim;
-            }
+            cout << "Masukkan NIM Mahasiswa : "; cin >> nim;
+            cout << endl;
 
             p = search_mahasiswa(LM, nim);
 
@@ -267,6 +262,7 @@ void menu_mahasiswa(list_organisasi &LO, list_mahasiswa &LM) {
             cout << "Nama           : "; cin >> info_pres.nama;
             cout << "Bidang         : "; cin >> info_pres.bidang;
             cout << "Urutan         : "; cin >> info_pres.urutan;
+            cout << endl;
 
             if (search_prestasi(p, id_prestasi) != NULL) {
                 cout << "!!! PRESTASI SUDAH TERDATA !!!" << endl;
@@ -294,6 +290,7 @@ void menu_mahasiswa(list_organisasi &LO, list_mahasiswa &LM) {
             cin >> nim;
             cout << "Masukkan ID Prestasi : ";
             cin >> id_prestasi;
+            cout << endl;
 
             p = search_mahasiswa(LM, nim);
 
@@ -311,39 +308,42 @@ void menu_mahasiswa(list_organisasi &LO, list_mahasiswa &LM) {
                 }
             }
 
-        } else if (input == "5") {      // delete data mahasisiwa
-            cout << "Masukkan NIM Mahasiswa : ";
-            cin >> nim;
+        } else if (input == "5") {      // delete data mahasiswa
+            cout << "Masukkan NIM Mahasiswa : "; cin >> nim;
+            cout << endl;
 
             p = delete_mahasiswa(LM, nim);
 
             if (p == NULL) {
                 cout << "!!! DATA MAHASISWA TIDAK DITEMUKAN !!!" << endl;
             } else {
+                p_org = LO.first;
+
+                while (p_org != NULL) {
+                    delete_anggota(p_org, nim);
+                    p_org = p_org->next;
+                }
+
                 cout << "DATA MAHASISWA BERHASIL DIHAPUS" << endl;
             }
 
         } else if (input == "6") {      // delete data prestasi
-            cout << "Masukkan NIM Mahasiswa : ";
-            cin >> nim;
+            cout << "Masukkan NIM Mahasiswa : "; cin >> nim;
+            cout << "Masukkan ID Prestasi   : "; cin >> id_prestasi;
+            cout << endl;
+
             p = search_mahasiswa(LM, nim);
-
-            while (p == NULL) {
-                cout << "!!! MAHASISWA TIDAK DITEMUKAN !!!" << endl;
-                cout << "Masukkan NIM Mahasiswa : ";
-                cin >> nim;
-                p = search_mahasiswa(LM, nim);
-            }
-
-            cout << "Masukkan ID Prestasi : ";
-            cin >> id_prestasi;
-
             q = delete_prestasi(p, id_prestasi);
 
-            if (q == NULL) {
+            if (p == NULL) {
+                cout << "!!! DATA MAHASISWA TIDAK DITEMUKAN !!!" << endl;
+                cout << endl;
+            } else if (q == NULL) {
                 cout << "!!! DATA PRESTASI TIDAK DITEMUKAN !!!" << endl;
+                cout << endl;
             } else {
                 cout << "DATA PRESTASI BERHASIL DIHAPUS" << endl;
+                cout << endl;
             }
 
         } else if (input == "7") {      // show data mahasiswa
@@ -355,17 +355,15 @@ void menu_mahasiswa(list_organisasi &LO, list_mahasiswa &LM) {
                 wait_for_enter();
                 continue;
             }
-            cout << "Masukkan NIM Mahasiswa : ";
-            cin >> nim;
 
-            while (search_mahasiswa(LM, nim) == NULL) {
-                cout << "!!! NIM TIDAK DITEMUKAN !!!" << endl;
-                cout << "Masukkan NIM Mahasiswa : ";
-                cin >> nim;
-            }
+            cout << "Masukkan NIM Mahasiswa : "; cin >> nim;
+            cout << endl;
 
             p = search_mahasiswa(LM, nim);
-            if (count_prestasi(p) == 0) {
+
+            if (p == NULL) {
+                cout << "!!! DATA MAHASISWA TIDAK DITEMUKAN !!!" << endl;
+            } else if (count_prestasi(p) == 0) {
                 cout << "!!! DATA PRESTASI MASIH KOSONG !!!" << endl;
             } else {
                 show_all_prestasi(p);
@@ -381,25 +379,18 @@ void menu_mahasiswa(list_organisasi &LO, list_mahasiswa &LM) {
                 wait_for_enter();
                 continue;
             }
-            cout << "Masukkan NIM Mahasiswa : ";
-            cin >> nim;
+
+            cout << "Masukkan NIM Mahasiswa : "; cin >> nim;
+            cout << endl;
 
             p = search_mahasiswa(LM, nim);
-
-            while (p == NULL) {
-                cout << "!!! MAHASISWA TIDAK DITEMUKAN !!!" << endl;
-                cout << "Masukkan NIM Mahasiswa : ";
-                cin >> nim;
-                p = search_mahasiswa(LM, nim);
-            }
-
             n = count_prestasi(p);
-            printf("Jumlah Prestasi %s adalah %i\n", p->info.nama, n);
+
+            cout << "Jumlah Prestasi " << p->info.nama << " adalah " << n << endl;
 
         } else if (input == "0") {     // exit
             break;
         } else {
-            // TODO
             cout << WRONG_INPUT_PROMPT << endl;
         }
 
@@ -435,13 +426,13 @@ void print_prompt_menu_organisasi() {
 void print_prompt_menu_mahasiswa() {
     cout << "=============  MAHASISWA   =============" << endl;
     cout << "1. INSERT DATA MAHASISWA" << endl;
-    cout << "2. INSERT DATA PERAIH PRESTASI" << endl;
+    cout << "2. INSERT DATA PRESTASI" << endl;
     cout << "3. SEARCH DATA MAHASISWA" << endl;
-    cout << "4. SEARCH DATA PERAIH PRESTASI" << endl;
+    cout << "4. SEARCH DATA PRESTASI" << endl;
     cout << "5. DELETE DATA MAHASISWA" << endl;
-    cout << "6. DELETE DATA PERAIH PRESTASI" << endl;
+    cout << "6. DELETE DATA PRESTASI" << endl;
     cout << "7. SHOW DATA MAHASISWA" << endl;
-    cout << "8. SHOW DATA PERAIH PRESTASI" << endl;
+    cout << "8. SHOW DATA PRESTASI" << endl;
     cout << "9. HITUNG JUMLAH MAHASISWA" << endl;
     cout << "10. HITUNG JUMLAH PERAIH PRESTASI" << endl;
     cout << "0. EXIT" << endl;
