@@ -28,6 +28,7 @@ int main() {
         } else if (input == "3") {
             break;
         } else {
+            cout << WRONG_INPUT_PROMPT << endl;
             wait_for_enter();
         }
     }

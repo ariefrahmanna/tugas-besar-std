@@ -208,7 +208,7 @@ void menu_organisasi(list_organisasi &LP, list_mahasiswa &LC) {
 
         } else {
             // TODO
-            cout << "!!!    INPUT SALAH    !!!" << endl;
+            cout << WRONG_INPUT_PROMPT << endl;
         }
 
         wait_for_enter();
@@ -400,7 +400,7 @@ void menu_mahasiswa(list_organisasi &LP, list_mahasiswa &LC) {
             break;
         } else {
             // TODO
-            cout << "!!!    INPUT SALAH    !!!" << endl;
+            cout << WRONG_INPUT_PROMPT << endl;
         }
 
         wait_for_enter();
