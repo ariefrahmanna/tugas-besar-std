@@ -267,6 +267,8 @@ void show_mahasiswa(adr_mahasiswa p) {
 }
 
 adr_anggota search_anggota(adr_organisasi p, string nim) {
+    if (p == NULL) return NULL;
+
     adr_anggota q = p->anggota;
 
     while (q != NULL) {
@@ -280,6 +282,8 @@ adr_anggota search_anggota(adr_organisasi p, string nim) {
     return NULL;
 }
 adr_prestasi search_prestasi(adr_mahasiswa p, string id_prestasi){
+    if (p == NULL) return NULL;
+
     adr_prestasi q = p->prestasi;
 
     while (q != NULL) {
@@ -333,6 +337,8 @@ void insert_prestasi(adr_mahasiswa p, adr_prestasi q){
 }
 
 adr_anggota delete_anggota(adr_organisasi p, string nim) {
+    if (p == NULL) return NULL;
+
     adr_anggota q = search_anggota(p, nim);
     adr_anggota r;
 
