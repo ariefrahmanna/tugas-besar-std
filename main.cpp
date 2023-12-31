@@ -22,7 +22,7 @@ int main() {
         if (input == "1") {
             menu_organisasi(LO, LM);
         } else if (input == "2") {
-            menu_mahasiswa(LM);
+            menu_mahasiswa(LO, LM);
         } else if (input == "3") {
             break;
         } else {
