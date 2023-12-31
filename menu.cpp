@@ -26,14 +26,17 @@ void menu_organisasi(list_organisasi &LP, list_mahasiswa &LC) {
                 insert_last_organisasi(LP, create_elm_organisasi(info));
                 cout << "=== ORGANISASI BERHASIL DITAMBAHKAN ===" << endl;
             }
+
         } else if (input == "2") {      // insert data anggota
             if (count_organisasi(LP) == 0) {
                 cout << "!!! DATA ORGANISASI MASIH KOSONG !!!" << endl;
+                wait_for_enter();
                 continue;
             }
 
             if (count_mahasiswa(LC) == 0) {
                 cout << "!!! DATA MAHASISWA MASIH KOSONG !!!" << endl;
+                wait_for_enter();
                 continue;
             }
 
@@ -166,8 +169,9 @@ void menu_organisasi(list_organisasi &LP, list_mahasiswa &LC) {
         } else {
             // TODO
             cout << "!!!    INPUT SALAH    !!!" << endl;
-            wait_for_enter();
         }
+
+        wait_for_enter();
     }
 }
 
@@ -184,6 +188,7 @@ void menu_mahasiswa(list_organisasi &LP, list_mahasiswa &LC) {
         print_prompt_menu_mahasiswa();
         cout << "Pilih: ";
         cin >> input;
+
         if (input == "1") {             // insert data mahasisiwa
             cout << "Masukkan Data Mahasiswa" << endl;
             cout << "NIM        : " ; cin >> info.nim;
@@ -200,9 +205,9 @@ void menu_mahasiswa(list_organisasi &LP, list_mahasiswa &LC) {
             }
 
         } else if (input == "2") {      // insert data prestasi
-
             if (count_mahasiswa(LC) == 0) {
                 cout << "!!! DATA MAHASISWA MASIH KOSONG !!!" << endl;
+                wait_for_enter();
                 continue;
             }
 
@@ -307,6 +312,7 @@ void menu_mahasiswa(list_organisasi &LP, list_mahasiswa &LC) {
         } else if (input == "8") {      // show data prestasi
             if (count_mahasiswa(LC) == 0) {
                 cout << "!!! DATA MAHASISWA MASIH KOSONG !!!" << endl;
+                wait_for_enter();
                 continue;
             }
             cout << "Masukkan NIM Mahasiswa : ";
@@ -332,6 +338,7 @@ void menu_mahasiswa(list_organisasi &LP, list_mahasiswa &LC) {
         } else if (input == "10") {     // hitung jumlah prestasi
             if (count_mahasiswa(LC) == 0) {
                 cout << "!!! DATA MAHASISWA MASIH KOSONG !!!" << endl;
+                wait_for_enter();
                 continue;
             }
             cout << "Masukkan NIM Mahasiswa : ";
@@ -354,8 +361,9 @@ void menu_mahasiswa(list_organisasi &LP, list_mahasiswa &LC) {
         } else {
             // TODO
             cout << "!!!    INPUT SALAH    !!!" << endl;
-            wait_for_enter();
         }
+
+        wait_for_enter();
     }
 }
 
