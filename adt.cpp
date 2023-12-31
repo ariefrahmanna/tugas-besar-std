@@ -207,10 +207,10 @@ void show_all_organisasi(list_organisasi L) {
         cout << endl;
 
         while (p != NULL) {
-            cout << "ID             :" << p->info.id << endl;
-            cout << "NAMA           :" << p->info.nama << endl;
-            cout << "BIDANG         :" << p->info.bidang << endl;
-            cout << "TAHUN BERDIRI  :" << p->info.sejak_tahun << endl;
+            cout << "ID             : " << p->info.id << endl;
+            cout << "NAMA           : " << p->info.nama << endl;
+            cout << "BIDANG         : " << p->info.bidang << endl;
+            cout << "TAHUN BERDIRI  : " << p->info.sejak_tahun << endl;
             cout << endl;
             p = p->next;
         }
@@ -228,11 +228,11 @@ void show_all_mahasiswa(list_mahasiswa L) {
         cout << endl;
 
         while (p != NULL) {
-            cout << "NIM        :" << p->info.nim << endl;
-            cout << "NAMA       :" << p->info.nama << endl;
-            cout << "JURUSAN    :" << p->info.jurusan << endl;
-            cout << "GENDER     :" << p->info.gender << endl;
-            cout << "ANGKATAN   :" << p->info.angkatan << endl;
+            cout << "NIM        : " << p->info.nim << endl;
+            cout << "NAMA       : " << p->info.nama << endl;
+            cout << "JURUSAN    : " << p->info.jurusan << endl;
+            cout << "GENDER     : " << p->info.gender << endl;
+            cout << "ANGKATAN   : " << p->info.angkatan << endl;
             cout << endl;
             p = p->next;
         }
@@ -247,10 +247,10 @@ void show_organisasi(adr_organisasi p) {
         return;
     }
 
-    cout << "ID             :" << p->info.id << endl;
-    cout << "NAMA           :" << p->info.nama << endl;
-    cout << "BIDANG         :" << p->info.bidang << endl;
-    cout << "TAHUN BERDIRI  :" << p->info.sejak_tahun << endl;
+    cout << "ID             : " << p->info.id << endl;
+    cout << "NAMA           : " << p->info.nama << endl;
+    cout << "BIDANG         : " << p->info.bidang << endl;
+    cout << "TAHUN BERDIRI  : " << p->info.sejak_tahun << endl;
 }
 
 void show_mahasiswa(adr_mahasiswa p) {
@@ -259,11 +259,11 @@ void show_mahasiswa(adr_mahasiswa p) {
         return;
     }
 
-    cout << "NIM        :" << p->info.nim << endl;
-    cout << "NAMA       :" << p->info.nama << endl;
-    cout << "JURUSAN    :" << p->info.jurusan << endl;
-    cout << "GENDER     :" << p->info.gender << endl;
-    cout << "ANGKATAN   :" << p->info.angkatan << endl;
+    cout << "NIM        : " << p->info.nim << endl;
+    cout << "NAMA       : " << p->info.nama << endl;
+    cout << "JURUSAN    : " << p->info.jurusan << endl;
+    cout << "GENDER     : " << p->info.gender << endl;
+    cout << "ANGKATAN   : " << p->info.angkatan << endl;
 }
 
 adr_anggota search_anggota(adr_organisasi p, string nim) {
@@ -364,6 +364,8 @@ adr_anggota delete_anggota(adr_organisasi p, string nim) {
 }
 
 adr_prestasi delete_prestasi(adr_mahasiswa p, string id_prestasi) {
+    if (p == NULL) return NULL;
+
     adr_prestasi q = search_prestasi(p, id_prestasi);
     adr_prestasi prec;
 
@@ -403,6 +405,8 @@ int count_anggota(adr_organisasi p) {
 }
 
 int count_prestasi(adr_mahasiswa p){
+    if (p == NULL) return 0;
+
     int n = 0;
     adr_prestasi q = p->prestasi;
 
@@ -420,18 +424,21 @@ void show_all_anggota(adr_organisasi p) {
     if (q == NULL) {
         cout << "======= LIST KOSONG ========" << endl;
     } else {
+        cout << "========    DATA ANGGOTA     ========" << endl;
+        cout << endl;
+
         while (q != NULL) {
-            cout << "========    DATA ANGGOTA     ========" << endl;
-            cout << "NIM        :" << q->value->info.nim << endl;
-            cout << "NAMA       :" << q->value->info.nama << endl;
-            cout << "JURUSAN    :" << q->value->info.jurusan << endl;
-            cout << "GENDER     :" << q->value->info.gender << endl;
-            cout << "ANGKATAN   :" << q->value->info.angkatan << endl;
-            cout << "=====================================" << endl;
+            cout << "NIM        : " << q->value->info.nim << endl;
+            cout << "NAMA       : " << q->value->info.nama << endl;
+            cout << "JURUSAN    : " << q->value->info.jurusan << endl;
+            cout << "GENDER     : " << q->value->info.gender << endl;
+            cout << "ANGKATAN   : " << q->value->info.angkatan << endl;
             cout << endl;
 
             q = q->next;
         }
+
+        cout << "=====================================" << endl;
     }
 }
 
@@ -441,17 +448,20 @@ void show_all_prestasi(adr_mahasiswa p) {
     if (q == NULL) {
         cout << "======= LIST KOSONG ========" << endl;
     } else {
+        cout << "========    DATA PRESTASI     ========" << endl;
+        cout << endl;
+
         while (q != NULL) {
-            cout << "========    DATA ANGGOTA     ========" << endl;
             cout << "ID         : " << q->info.id << endl;
             cout << "NAMA       : " << q->info.nama << endl;
             cout << "BIDANG     : " << q->info.bidang << endl;
             cout << "URUTAN     : " << q->info.urutan << endl;
-            cout << "=====================================" << endl;
             cout << endl;
 
             q = q->next;
         }
+
+        cout << "======================================" << endl;
     }
 }
 
