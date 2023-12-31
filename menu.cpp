@@ -203,7 +203,7 @@ void menu_organisasi(list_organisasi &LP, list_mahasiswa &LC) {
                 printf("Jumlah Anggota dari Organisasi %s adalah %i\n", p->info.nama, n);
             }
 
-        } else if (input == "11") {     // exit
+        } else if (input == "0") {     // exit
             break;
 
         } else {
@@ -396,7 +396,7 @@ void menu_mahasiswa(list_organisasi &LP, list_mahasiswa &LC) {
             n = count_prestasi(p);
             printf("Jumlah Prestasi %s adalah %i\n", p->info.nama, n);
 
-        } else if (input == "11") {     // exit
+        } else if (input == "0") {     // exit
             break;
         } else {
             // TODO
@@ -428,7 +428,7 @@ void print_prompt_menu_organisasi() {
     cout << "8. SHOW DATA ANGGOTA" << endl;
     cout << "9. HITUNG JUMLAH ORGANISASI" << endl;
     cout << "10. HITUNG JUMLAH ANGGOTA" << endl;
-    cout << "11. EXIT" << endl;
+    cout << "0. EXIT" << endl;
     cout << "========================================" << endl;
 }
 
@@ -444,6 +444,6 @@ void print_prompt_menu_mahasiswa() {
     cout << "8. SHOW DATA PERAIH PRESTASI" << endl;
     cout << "9. HITUNG JUMLAH MAHASISWA" << endl;
     cout << "10. HITUNG JUMLAH PERAIH PRESTASI" << endl;
-    cout << "11. EXIT" << endl;
+    cout << "0. EXIT" << endl;
     cout << "========================================" << endl;
 }
