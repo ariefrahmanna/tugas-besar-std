@@ -9,11 +9,17 @@ using namespace std;
 int main() {
     list_organisasi LO;
     list_mahasiswa LM;
-
     string input;
 
-    create_list_organisasi(LO);
-    create_list_mahasiswa(LM);
+    clear_screen();
+    validate_repeat(input, "Pakai Data Dummy? [Y/N]: ");
+
+    if (input == "Y" || input == "y") {
+        use_dummy_data(LO, LM);
+    } else {
+        create_list_organisasi(LO);
+        create_list_mahasiswa(LM);
+    }
 
     while (true) {
         clear_screen();

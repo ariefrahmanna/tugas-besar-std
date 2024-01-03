@@ -114,4 +114,6 @@ void show_all_prestasi(adr_mahasiswa p);
 // show info
 void show_prestasi(adr_prestasi p);
 
+void use_dummy_data(list_organisasi &LO, list_mahasiswa &LM);
+
 #endif // ADT_H_INCLUDED

@@ -473,3 +473,132 @@ void show_prestasi(adr_prestasi p) {
     cout << "BIDANG     : " << p->info.bidang << endl;
     cout << "URUTAN     : " << p->info.urutan << endl;
 }
+
+void use_dummy_data(list_organisasi &LO, list_mahasiswa &LM) {
+    const int BANYAK_ORGANISASI = 5;
+    const int BANYAK_MAHASISWA = 10;
+    const int MAKS_ANGGOTA = 5;
+    const int MAKS_PRESTASI = 3;
+
+    adr_organisasi p_organisasi;
+    adr_mahasiswa p_mahasiswa;
+    adr_prestasi p_prestasi;
+    info_prestasi i_prestasi;
+    string nim;
+
+    info_organisasi organisasis[BANYAK_ORGANISASI] = {
+        {"A001", "SEARCH", "Research", 2009},
+        {"A002", "GDSC", "Technology", 2023},
+        {"A003", "BEM", "Leadership", 2018},
+        {"A004", "AKSARA", "Journalism", 2012},
+        {"A005", "CHOIR", "Art", 2008},
+    };
+
+    info_mahasiswa mahasiswas[BANYAK_MAHASISWA] = {
+        {"B001", "Monica", "IT", "P", 2022},
+        {"B002", "Arief", "IT", "L", 2020},
+        {"B003", "Theodora", "IT", "P", 2021},
+        {"B004", "Agung", "DS", "P", 2021},
+        {"B005", "Glend", "DS", "L", 2022},
+        {"B006", "Lala", "IF", "P", 2020},
+        {"B007", "Riska", "IF", "P", 2020},
+        {"B008", "Anju", "SE", "L", 2020},
+        {"B009", "Nasywa", "SE", "P", 2022},
+        {"B010", "Salsabila", "SE", "L", 2021},
+    };
+
+    string kumpulan_anggotas[BANYAK_ORGANISASI][MAKS_ANGGOTA] = {
+        {"B001","B002","B006","B007","B010"},
+        {"B001","B004","B005","B006","B009"},
+        {"B002","B003","B007","B008","B009"},
+        {"B002","B003","B004","B007","B010"},
+        {"B003","B005","B008"},
+    };
+
+    info_prestasi kumpulan_prestasis[BANYAK_MAHASISWA][MAKS_PRESTASI] = {
+        {
+            {"M01", "GSC", "Tech", 1},
+            {"M02", "BPC", "Business", 3},
+        },
+        {
+            {"N01", "JBC", "Essay", 2},
+            {"N02", "HackFest", "Tech", 1},
+            {"N03", "CR", "UI/UX", 3},
+        },
+        {
+            {"P01", "NUDC", "Debate", 2},
+            {"P02", "Dinacom", "UI/UX", 3},
+            {"P03", "JBC", "Essay", 1},
+        },
+        {
+            {"Q01", "GSC", "Tech", 2},
+            {"Q02", "Dinacom", "UI/UX", 2},
+        },
+        {
+            {"R01", "HackFest", "Tech", 3},
+            {"R02", "JBC", "Essay", 1},
+        },
+        {
+            {"S01", "KDMI", "Debate", 2},
+            {"S02", "FIKSI", "Journalism", 1},
+            {"S03", "MedSpin", "Medical", 2},
+        },
+        {
+            {"T01", "KDMI", "Debate", 1},
+            {"T02", "NUDC", "Debate", 2},
+            {"T03", "FIKSI", "Journalism", 3},
+        },
+        {
+            {"U01", "JBC", "Essay", 1},
+            {"U02", "CR", "UI/UX", 2},
+        },
+        {
+            {"V01", "NUDC", "Debate", 1},
+            {"V02", "KDMI", "Debate", 4},
+        },
+        {
+            {"W01", "FIKSI", "Journalism", 2},
+            {"W02", "CR", "UI/UX", 3},
+        },
+    };
+
+    create_list_organisasi(LO);
+    create_list_mahasiswa(LM);
+
+    // insert organisasi
+    for (info_organisasi x : organisasis) {
+        p_organisasi = create_elm_organisasi(x);
+        insert_last_organisasi(LO, p_organisasi);
+    }
+
+    // insert mahasiswa
+    for (info_mahasiswa x : mahasiswas) {
+        p_mahasiswa = create_elm_mahasiswa(x);
+        insert_last_mahasiswa(LM, p_mahasiswa);
+    }
+
+    // insert anggota
+    for (int i = 0; i < BANYAK_ORGANISASI; i++) {
+        for (int j = 0; j < MAKS_ANGGOTA; j++) {
+            nim = kumpulan_anggotas[i][j];
+
+            if (nim.empty()) continue;
+
+            p_organisasi = search_organisasi(LO, organisasis[i].id);
+            insert_anggota(LM, p_organisasi, nim);
+        }
+    }
+
+    // insert prestasi
+    for (int i = 0; i < BANYAK_MAHASISWA; i++) {
+        for (int j = 0; j < MAKS_PRESTASI; j++) {
+            i_prestasi = kumpulan_prestasis[i][j];
+
+            if (i_prestasi.id.empty()) continue;
+
+            p_mahasiswa = search_mahasiswa(LM, mahasiswas[i].nim);
+            p_prestasi = create_elm_prestasi(i_prestasi);
+            insert_prestasi(p_mahasiswa, p_prestasi);
+        }
+    }
+}
