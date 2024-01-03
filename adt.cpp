@@ -498,13 +498,13 @@ void use_dummy_data(list_organisasi &LO, list_mahasiswa &LM) {
         {"B001", "Monica", "IT", "P", 2022},
         {"B002", "Arief", "IT", "L", 2020},
         {"B003", "Theodora", "IT", "P", 2021},
-        {"B004", "Agung", "DS", "P", 2021},
+        {"B004", "Agung", "DS", "L", 2021},
         {"B005", "Glend", "DS", "L", 2022},
         {"B006", "Lala", "IF", "P", 2020},
         {"B007", "Riska", "IF", "P", 2020},
         {"B008", "Anju", "SE", "L", 2020},
         {"B009", "Nasywa", "SE", "P", 2022},
-        {"B010", "Salsabila", "SE", "L", 2021},
+        {"B010", "Salsabila", "SE", "P", 2021},
     };
 
     string kumpulan_anggotas[BANYAK_ORGANISASI][MAKS_ANGGOTA] = {
