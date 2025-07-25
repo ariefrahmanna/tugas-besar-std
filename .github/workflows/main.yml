@@ -26,8 +26,10 @@ jobs:
 
       - name: Build code
         run: |
-          # Replace this with your actual build steps if needed
-          echo "No build needed for this example."
+          mkdir build
+          cd build
+          cmake ..
+          make
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
