@@ -27,8 +27,9 @@ jobs:
         with:
           languages: c++
   
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
+      - name: Build
+        run: |
+          g++ -std=c++17 -o my_app src/main.cpp src/other_file.cpp
   
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
