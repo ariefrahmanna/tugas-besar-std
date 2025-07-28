@@ -59,18 +59,19 @@ jobs:
       shell: bash
       run: |
         if [[ -s resultz.sarif ]]; then
-        {
-          echo "### 🧪 CodeQL Findings for ${{ matrix.language }}"
-          echo "<details><summary>Click to expand</summary>"
-          echo ""
-          echo '| Rule ID | Message | File | Line |'
-          echo '|---------|---------|------|------|'
+          echo "### 🧪 CodeQL Findings for ${{ matrix.language }}" >> $GITHUB_STEP_SUMMARY
+          echo "<details><summary>Click to expand</summary>" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '| Rule ID | Message | File | Line |' >> $GITHUB_STEP_SUMMARY
+          echo '|---------|---------|------|------|' >> $GITHUB_STEP_SUMMARY
+    
           jq -r '
             .runs[].results[] |
             "| \(.ruleId) | \(.message.text | gsub("\n"; " ")) | \(.locations[0].physicalLocation.artifactLocation.uri) | \(.locations[0].physicalLocation.region.startLine) |"
-          ' resultz.sarif
-          echo ""
-          echo "</details>"
-        } >> $GITHUB_STEP_SUMMARY
+          ' resultz.sarif >> $GITHUB_STEP_SUMMARY
+    
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "</details>" >> $GITHUB_STEP_SUMMARY
         fi
+
 
