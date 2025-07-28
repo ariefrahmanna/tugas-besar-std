@@ -13,10 +13,7 @@ jobs:
       packages: read
       actions: read
       contents: read
-      
-    env:  
-      CODEQL_ACTION_EXPORT_ARTIFACT: resultz.sarif
-      
+
     strategy:
       fail-fast: false
       matrix:
@@ -45,37 +42,36 @@ jobs:
         echo '  make bootstrap'
         echo '  make release'
         exit 1
-
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{ matrix.language }}"
+        output: resultz.sarif
 
     - name: Save SARIF results as artifact
       uses: actions/upload-artifact@v4
       with:
         name: resultz-${{ matrix.language }}
         path: resultz.sarif
+        
+    - name: Print SARIF file (debug)
+      run: cat resultz.sarif || echo "SARIF file not found or empty"
 
-    - name: Publish CodeQL SARIF Summary
-      shell: bash
-      run: |
-        if [[ -s resultz.sarif ]]; then
-          echo "### 🧪 CodeQL Findings for ${{ matrix.language }}" >> $GITHUB_STEP_SUMMARY
-          echo "<details><summary>Click to expand</summary>" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo '| Rule ID | Message | File | Line |' >> $GITHUB_STEP_SUMMARY
-          echo '|---------|---------|------|------|' >> $GITHUB_STEP_SUMMARY
-    
-          jq -r '
-            .runs[].results[] |
-            "| \(.ruleId) | \(.message.text | gsub("\n"; " ")) | \(.locations[0].physicalLocation.artifactLocation.uri) | \(.locations[0].physicalLocation.region.startLine) |"
-          ' resultz.sarif >> $GITHUB_STEP_SUMMARY
-    
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "</details>" >> $GITHUB_STEP_SUMMARY
-        else
-          echo "No SARIF file found (resultz.sarif)"
-        fi
-
-
+    # - name: Publish CodeQL SARIF Summary
+    #   shell: bash
+    #   run: |
+    #     if [[ -s resultz.sarif ]]; then
+    #     {
+    #       echo "### 🧪 CodeQL Findings for ${{ matrix.language }}"
+    #       echo "<details><summary>Click to expand</summary>"
+    #       echo ""
+    #       echo '| Rule ID | Message | File | Line |'
+    #       echo '|---------|---------|------|------|'
+    #       jq -r '
+    #         .runs[].results[] |
+    #         "| \(.ruleId) | \(.message.text | gsub("\n"; " ")) | \(.locations[0].physicalLocation.artifactLocation.uri) | \(.locations[0].physicalLocation.region.startLine) |"
+    #       ' resultz.sarif
+    #       echo ""
+    #       echo "</details>"
+    #     } >> $GITHUB_STEP_SUMMARY
+    #     fi
