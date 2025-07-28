@@ -13,7 +13,10 @@ jobs:
       packages: read
       actions: read
       contents: read
-
+      
+    env:  
+      CODEQL_ACTION_EXPORT_ARTIFACT: resultz.sarif
+      
     strategy:
       fail-fast: false
       matrix:
@@ -47,10 +50,6 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{ matrix.language }}"
-        output: resultz.sarif
-        
-    - name: Print SARIF file (debug)
-      run: cat resultz.sarif || echo "SARIF file not found or empty"
 
     - name: Save SARIF results as artifact
       uses: actions/upload-artifact@v4
@@ -75,6 +74,8 @@ jobs:
     
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "</details>" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "No SARIF file found (resultz.sarif)"
         fi
 
 
