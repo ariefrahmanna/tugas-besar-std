@@ -45,17 +45,17 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
-        output: codeql-results.sarif
+        output: resultz.sarif
         
     - name: Save SARIF results as artifact
       uses: actions/upload-artifact@v4
       with:
-        name: codeql-results
-        path: codeql-results.sarif
+        name: resultz
+        path: resultz.sarif
         
     - name: Publish CodeQL SARIF Summary
       run: |
-          if [[ -s codeql-results.sarif ]]; then
+          if [[ -s resultz.sarif ]]; then
           {
             echo "### 🧪 Semgrep Findings"
             echo "<details><summary>Click to expand</summary>"
@@ -65,7 +65,7 @@ jobs:
             jq -r '
               .runs[].results[] |
               "| \(.ruleId) | \(.message.text | gsub("\n"; " ")) | \(.locations[0].physicalLocation.artifactLocation.uri) | \(.locations[0].physicalLocation.region.startLine) |"
-            ' codeql-results.sarif
+            ' resultz.sarif
             echo ""
             echo "</details>"
           } >> $GITHUB_STEP_SUMMARY
