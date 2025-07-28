@@ -20,7 +20,7 @@ jobs:
         include:
         - language: actions
           build-mode: none
-        - language: javascript-typescript
+        - language: cpp
           build-mode: none
 
     steps:
