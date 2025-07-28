@@ -1,44 +1,63 @@
-# .github/workflows/codeql.yml
-name: "CodeQL"
+name: "CodeQL #2"
 
 on:
+  push:
   pull_request: {}
 
 jobs:
   analyze:
-    name: CodeQL Analysis
-    runs-on: ubuntu-latest
+    name: Analyze (${{ matrix.language }})
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
     permissions:
       security-events: write
+      packages: read
+      actions: read
+      contents: read
 
     strategy:
+      fail-fast: false
       matrix:
-        language: [cpp] 
-
+        include:
+        - language: actions
+          build-mode: none
+        - language: cpp
+          build-mode: none
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+        build-mode: ${{ matrix.build-mode }}
+    - if: matrix.build-mode == 'manual'
+      shell: bash
+      run: |
+        echo 'If you are using a "manual" build mode for one or more of the' \
+          'languages you are analyzing, replace this with the commands to build' \
+          'your code, for example:'
+        echo '  make bootstrap'
+        echo '  make release'
+        exit 1
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: ${{ matrix.language }}
-
-      - name: Build code
-        run: |
-          # Replace this with your actual build steps if needed
-          echo "No build needed for this example."
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-        with:
-          output: codeql_result.sarif
-      - name: Summarize CodeQL Findings in PR
-        if: always()
-        run: |
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:${{matrix.language}}"
+        output: codeql-results.sarif
+        
+    - name: Save SARIF results as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: codeql-results
+        path: codeql-results.sarif
+        
+    - name: Publish CodeQL SARIF Summary
+      run: |
           if [[ -s codeql-results.sarif ]]; then
           {
-            echo "### 🔍 CodeQL Findings"
+            echo "### 🧪 Semgrep Findings"
             echo "<details><summary>Click to expand</summary>"
             echo ""
             echo '| Rule ID | Message | File | Line |'
