@@ -48,6 +48,9 @@ jobs:
       with:
         category: "/language:${{ matrix.language }}"
         output: resultz.sarif
+        
+    - name: Print SARIF file (debug)
+      run: cat resultz.sarif || echo "SARIF file not found or empty"
 
     - name: Save SARIF results as artifact
       uses: actions/upload-artifact@v4
