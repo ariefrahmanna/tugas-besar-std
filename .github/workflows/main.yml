@@ -1,8 +1,9 @@
-name: "CodeQL #2"
-
+name: "CodeQL Analysis - Simple"
 on:
   push:
-  pull_request: {}
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   analyze:
@@ -13,7 +14,6 @@ jobs:
       packages: read
       actions: read
       contents: read
-
     strategy:
       fail-fast: false
       matrix:
@@ -22,56 +22,41 @@ jobs:
           build-mode: none
         - language: cpp
           build-mode: none
-
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-
+    
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
-
-    - if: matrix.build-mode == 'manual'
-      shell: bash
-      run: |
-        echo 'If you are using a "manual" build mode for one or more of the' \
-          'languages you are analyzing, replace this with the commands to build' \
-          'your code, for example:'
-        echo '  make bootstrap'
-        echo '  make release'
-        exit 1
+    
     - name: Perform CodeQL Analysis
+      id: analyze
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{ matrix.language }}"
-        output: resultz.sarif
-
-    - name: Save SARIF results as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: resultz-${{ matrix.language }}
-        path: resultz.sarif
+    
+    - name: Add Analysis Summary
+      if: always()
+      run: |
+        echo "# 🔍 CodeQL Analysis - ${{ matrix.language }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
         
-    - name: Print SARIF file (debug)
-      run: cat resultz.sarif || echo "SARIF file not found or empty"
-
-    # - name: Publish CodeQL SARIF Summary
-    #   shell: bash
-    #   run: |
-    #     if [[ -s resultz.sarif ]]; then
-    #     {
-    #       echo "### 🧪 CodeQL Findings for ${{ matrix.language }}"
-    #       echo "<details><summary>Click to expand</summary>"
-    #       echo ""
-    #       echo '| Rule ID | Message | File | Line |'
-    #       echo '|---------|---------|------|------|'
-    #       jq -r '
-    #         .runs[].results[] |
-    #         "| \(.ruleId) | \(.message.text | gsub("\n"; " ")) | \(.locations[0].physicalLocation.artifactLocation.uri) | \(.locations[0].physicalLocation.region.startLine) |"
-    #       ' resultz.sarif
-    #       echo ""
-    #       echo "</details>"
-    #     } >> $GITHUB_STEP_SUMMARY
-    #     fi
+        if [ "${{ steps.analyze.outcome }}" == "success" ]; then
+          echo "## ✅ Analysis Completed Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "Security analysis for **${{ matrix.language }}** has been completed." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 **[View detailed results in Security tab](../../security/code-scanning)**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "## ❌ Analysis Failed" >> $GITHUB_STEP_SUMMARY
+          echo "There were issues analyzing **${{ matrix.language }}** code." >> $GITHUB_STEP_SUMMARY
+          echo "Check the workflow logs for details." >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Repository**: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
