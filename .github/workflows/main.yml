@@ -58,7 +58,7 @@ jobs:
     - name: Publish CodeQL SARIF Summary
       shell: bash
       run: |
-        if [[ -s resultz.sarif ]]; then
+        if [[ -s ${{ matrix.language }}.sarif ]]; then
         {
           echo "### 🧪 CodeQL Findings for ${{ matrix.language }}"
           echo "<details><summary>Click to expand</summary>"
