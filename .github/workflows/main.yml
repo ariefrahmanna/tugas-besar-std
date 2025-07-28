@@ -1,5 +1,7 @@
-name: "CodeQL Analysis"
+name: "CodeQL #2"
+
 on:
+  push:
   pull_request: {}
 
 jobs:
@@ -11,25 +13,24 @@ jobs:
       packages: read
       actions: read
       contents: read
+
     strategy:
       fail-fast: false
       matrix:
         include:
         - language: actions
           build-mode: none
-        - language: cpp
-          build-mode: none
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
-    
+
     - if: matrix.build-mode == 'manual'
       shell: bash
       run: |
@@ -39,41 +40,33 @@ jobs:
         echo '  make bootstrap'
         echo '  make release'
         exit 1
-    
     - name: Perform CodeQL Analysis
-      id: analyze 
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{ matrix.language }}"
-        output: sarif-results  
-        upload: true  
+        output: resultz.sarif
 
     - name: Save SARIF results as artifact
-      if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: codeql-results-${{ matrix.language }} 
-        path: sarif-results/*.sarif 
-        if-no-files-found: ignore  
-    
-    - name: Add Analysis Summary
-      if: always()
+        name: resultz-${{ matrix.language }}
+        path: resultz.sarif
+
+    - name: Publish CodeQL SARIF Summary
+      shell: bash
       run: |
-        echo "# 🔍 CodeQL Analysis - ${{ matrix.language }}" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        
-        if [ "${{ steps.analyze.outcome }}" == "success" ]; then
-          echo "## ✅ Analysis Completed Successfully" >> $GITHUB_STEP_SUMMARY
-          echo "Security analysis for **${{ matrix.language }}** has been completed." >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "🔗 **[View detailed results in Security tab](../../security/code-scanning)**" >> $GITHUB_STEP_SUMMARY
-        else
-          echo "## ❌ Analysis Failed" >> $GITHUB_STEP_SUMMARY
-          echo "There were issues analyzing **${{ matrix.language }}** code." >> $GITHUB_STEP_SUMMARY
-          echo "Check the workflow logs for details." >> $GITHUB_STEP_SUMMARY
+        if [[ -s resultz.sarif ]]; then
+        {
+          echo "### 🧪 CodeQL Findings for ${{ matrix.language }}"
+          echo "<details><summary>Click to expand</summary>"
+          echo ""
+          echo '| Rule ID | Message | File | Line |'
+          echo '|---------|---------|------|------|'
+          jq -r '
+            .runs[].results[] |
+            "| \(.ruleId) | \(.message.text | gsub("\n"; " ")) | \(.locations[0].physicalLocation.artifactLocation.uri) | \(.locations[0].physicalLocation.region.startLine) |"
+          ' resultz.sarif
+          echo ""
+          echo "</details>"
+        } >> $GITHUB_STEP_SUMMARY
         fi
-        
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "**Repository**: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
-        echo "**Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
-        echo "**Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
