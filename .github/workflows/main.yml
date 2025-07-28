@@ -68,7 +68,7 @@ jobs:
           jq -r '
             .runs[].results[] |
             "| \(.ruleId) | \(.message.text | gsub("\n"; " ")) | \(.locations[0].physicalLocation.artifactLocation.uri) | \(.locations[0].physicalLocation.region.startLine) |"
-          ' resultz.sarif
+          ' resultz-${{ matrix.language }}/${{ matrix.language }}.sarif
           echo ""
           echo "</details>"
         } >> $GITHUB_STEP_SUMMARY
